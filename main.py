@@ -69,9 +69,9 @@ class HideAndSeekGame:
         # More distinct payoffs for each place type
         payoffs = {
             # (found_payoff, not_found_payoff)
-            0: (-6, 4),   # Hard places: high penalty if found, high reward if not
-            1: (-3, 1.5), # Neutral places: moderate payoffs
-            2: (-1, 0.5)  # Easy places: small penalty if found, small reward if not
+            0: (-6, 0.5), #hard for seeker : the seeker gets higher points upon winning, while the hider gets lower points upon winning 
+            1: (-2, 2),   #neutral for seeker : both hider and seeker get the same amount of points upon winning
+            2: (-0.5, 3)  #easy for seeker : the seeker gets lower points upon winning, and the hider gets higher points upon winning
         }
         
         for h in range(self.world_size):
