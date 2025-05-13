@@ -1,4 +1,4 @@
-import numpy as np 
+import numpy as np
 import random
 from scipy.optimize import linprog
 import json
@@ -31,7 +31,6 @@ class HideAndSeekGame:
         self.rounds_played = 0
         self.human_wins = 0
         self.computer_wins = 0
-        self.human_role = None
         self.calculate_optimal_strategies()
     
     def generate_place_types(self):
