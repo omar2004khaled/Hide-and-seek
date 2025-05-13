@@ -1,8 +1,7 @@
-import numpy as np
+import numpy as np 
 import random
 from scipy.optimize import linprog
 import json
-
 
 
 class HideAndSeekGame:
@@ -25,7 +24,8 @@ class HideAndSeekGame:
     
     def reset_game(self):
         self.place_types = self.generate_place_types()
-        self.payoff_matrix = self.generate_payoff_matrix()
+        self.payoff_matrix = self.generate_base_payoff_matrix()
+        self.proximity_matrix = self.apply_proximity_effects() if self.use_proximity else self.payoff_matrix.copy()
         self.human_score = 0
         self.computer_score = 0
         self.rounds_played = 0
@@ -50,48 +50,59 @@ class HideAndSeekGame:
         return place_types
     
     def calculate_distance(self, pos1, pos2):
-        """Enhanced distance calculation with scaling"""
+        """Calculate absolute distance between positions"""
         if self.is_2d:
             x1, y1 = pos1 // self.cols, pos1 % self.cols
             x2, y2 = pos2 // self.cols, pos2 % self.cols
-            distance = np.sqrt((x1-x2)*2 + (y1-y2)*2)  # Euclidean distance
+            return abs(x1 - x2) + abs(y1 - y2)  # Manhattan distance for 2D
         else:
-            distance = abs(pos1 - pos2)  # Linear distance for 1D
-        
-        # Scale distance to 0-1 range based on world size
-        max_distance = np.sqrt((self.rows-1)*2 + (self.cols-1)*2) if self.is_2d else self.world_size-1
-        return distance / max_distance
+            return abs(pos1 - pos2)  # Linear distance for 1D
     
-    def generate_payoff_matrix(self):
-        """Generate payoff matrix with enhanced proximity effects"""
+    def get_proximity_multiplier(self, pos1, pos2):
+        """Get proximity multiplier based on the distance between positions"""
+        distance = self.calculate_distance(pos1, pos2)
+        
+        if distance == 1:
+            return 0.5  # If one cell away, multiply by 0.5
+        elif distance == 2:
+            return 0.75  # If two cells away, multiply by 0.75
+        else:
+            return 1.0  # Otherwise, no change
+    
+    def generate_base_payoff_matrix(self):
+        """Generate base payoff matrix without proximity effects"""
         matrix = np.zeros((self.world_size, self.world_size))
         
         # More distinct payoffs for each place type
         payoffs = {
             # (found_payoff, not_found_payoff)
-            0: (-6, 0.5), #hard for seeker : the seeker gets higher points upon winning, while the hider gets lower points upon winning 
-            1: (-2, 2),   #neutral for seeker : both hider and seeker get the same amount of points upon winning
-            2: (-0.5, 3)  #easy for seeker : the seeker gets lower points upon winning, and the hider gets higher points upon winning
+            0: (-6, 0.5),  # hard for seeker
+            1: (-2, 2),    # neutral for seeker
+            2: (-0.5, 3)   # easy for seeker
         }
         
         for h in range(self.world_size):
             for s in range(self.world_size):
                 if h == s:  # Seeker found hider
-                    base = payoffs[self.place_types[h]][0]
-                    if self.use_proximity:
-                        distance = self.calculate_distance(h, s)
-                        matrix[h, s] = base * (0.5 + 0.5*distance)  # 50-100% of penalty
-                    else:
-                        matrix[h, s] = base
+                    matrix[h, s] = payoffs[self.place_types[h]][0]
                 else:  # Seeker didn't find hider
-                    base = payoffs[self.place_types[h]][1]
-                    if self.use_proximity:
-                        distance = self.calculate_distance(h, s)
-                        matrix[h, s] = base * (1.5 - distance)  # 50-150% of reward
-                    else:
-                        matrix[h, s] = base
+                    matrix[h, s] = payoffs[self.place_types[h]][1]
                         
         return matrix
+    
+    def apply_proximity_effects(self):
+        """Apply proximity effects to create a separate proximity matrix (for reference only)"""
+        proximity_matrix = np.zeros((self.world_size, self.world_size))
+        
+        for h in range(self.world_size):
+            for s in range(self.world_size):
+                if h == s:  # Seeker found hider - same as base matrix
+                    proximity_matrix[h, s] = self.payoff_matrix[h, s]
+                else:  # Apply proximity effects when seeker doesn't find hider
+                    multiplier = self.get_proximity_multiplier(h, s)
+                    proximity_matrix[h, s] = self.payoff_matrix[h, s] * multiplier
+                    
+        return proximity_matrix
     
     def calculate_optimal_strategies(self):
         # For hider (row player) - maximin
@@ -151,10 +162,17 @@ class HideAndSeekGame:
         """Print debug information about strategies"""
         print("\n=== Strategy Debug Info ===")
         print("Place Types:", [['Hard','Neutral','Easy'][t] for t in self.place_types])
-        print("\nPayoff Matrix (Hider's perspective):")
+        
+        print("\nPayoff Matrix (Hider's perspective) - USED FOR GAME SCORING:")
         for i, row in enumerate(self.payoff_matrix):
             print(f"Pos {i+1:2} ({['Hard','Neutral','Easy'][self.place_types[i]]}):", 
                   " ".join(f"{x:5.1f}" for x in row))
+        
+        if self.use_proximity:
+            print("\nProximity Matrix (NOT USED FOR SCORING - Reference Only):")
+            for i, row in enumerate(self.proximity_matrix):
+                print(f"Pos {i+1:2} ({['Hard','Neutral','Easy'][self.place_types[i]]}):", 
+                    " ".join(f"{x:5.1f}" for x in row))
         
         print("\nHider Probabilities:")
         for i, p in enumerate(self.hider_probabilities):
@@ -167,20 +185,31 @@ class HideAndSeekGame:
     def play_round(self, human_move):
         """Play one round of the game"""
         computer_move = self.get_computer_move()
-        
+
         if self.human_role == "hider":
             hider_pos, seeker_pos = human_move, computer_move
         else:
             hider_pos, seeker_pos = computer_move, human_move
-        
-        score = self.payoff_matrix[hider_pos, seeker_pos]
-        self.update_scores(score, hider_pos, seeker_pos)
-        
+
+        base_score = self.payoff_matrix[hider_pos, seeker_pos]
+
+        # Determine if proximity score applies
+        use_proximity = self.use_proximity and hider_pos != seeker_pos
+        proximity_score = self.proximity_matrix[hider_pos, seeker_pos] if use_proximity else None
+        proximity_multiplier = self.get_proximity_multiplier(hider_pos, seeker_pos) if use_proximity else None
+
+        # Pass both scores to update_scores
+        self.update_scores(base_score, proximity_score)
+
         self.rounds_played += 1
-        return self.format_result(score, hider_pos, seeker_pos), hider_pos, seeker_pos
-    
-    def update_scores(self, score, hider_pos, seeker_pos):
-        """Update scores based on game outcome"""
+        return self.format_result(
+            base_score, hider_pos, seeker_pos, proximity_score, proximity_multiplier
+        ), hider_pos, seeker_pos
+
+    def update_scores(self, base_score, proximity_score):
+        """Update scores, using proximity score if available"""
+        score = proximity_score if proximity_score is not None else base_score
+
         if self.human_role == "hider":
             if score > 0:
                 self.human_score += score
@@ -195,17 +224,25 @@ class HideAndSeekGame:
             else:
                 self.human_score -= score
                 self.human_wins += 1
+
     
-    def format_result(self, score, hider_pos, seeker_pos):
-        """Format the result message"""
+    def format_result(self, score, hider_pos, seeker_pos, proximity_score=None, proximity_multiplier=None):
+        """Format the result message with proximity details if applicable"""
         place_type = ['Hard', 'Neutral', 'Easy'][self.place_types[hider_pos]]
+        
+        # Create a detailed message that explains proximity scoring if applicable
+        proximity_detail = ""
+        if proximity_score is not None and proximity_multiplier is not None:
+            distance = self.calculate_distance(hider_pos, seeker_pos)
+            proximity_detail = f" (Proximity score would be: {proximity_score:.1f}, Distance: {distance}, Multiplier: {proximity_multiplier:.2f}, but using base score)"
+        
         if self.human_role == "hider":
             if score > 0:
-                return f"You won! +{score:.1f} points (Hid at {hider_pos+1} [{place_type}], Computer searched at {seeker_pos+1})"
+                return f"You won! +{score:.1f} points{proximity_detail} (Hid at {hider_pos+1} [{place_type}], Computer searched at {seeker_pos+1})"
             return f"You lost! {score:.1f} points (Computer found you at {hider_pos+1} [{place_type}])"
         else:
             if score > 0:
-                return f"You lost! -{score:.1f} points (Computer hid at {hider_pos+1} [{place_type}], you searched at {seeker_pos+1})"
+                return f"You lost! -{score:.1f} points{proximity_detail} (Computer hid at {hider_pos+1} [{place_type}], you searched at {seeker_pos+1})"
             return f"You won! +{-score:.1f} points (Found hider at {hider_pos+1} [{place_type}])"
     
     def get_computer_move(self):
@@ -254,6 +291,7 @@ class HideAndSeekGame:
             'is_2d': self.is_2d,
             'place_types': self.place_types,
             'payoff_matrix': self.payoff_matrix.tolist(),
+            'proximity_matrix': self.proximity_matrix.tolist() if self.use_proximity else None,
             'human_role': self.human_role,
             'human_score': self.human_score,
             'computer_score': self.computer_score,
@@ -277,6 +315,12 @@ class HideAndSeekGame:
         self.cols = self.world_size // self.rows if self.is_2d else self.world_size
         self.place_types = state['place_types']
         self.payoff_matrix = np.array(state['payoff_matrix'])
+        
+        if self.use_proximity and state.get('proximity_matrix'):
+            self.proximity_matrix = np.array(state['proximity_matrix'])
+        else:
+            self.proximity_matrix = self.apply_proximity_effects() if self.use_proximity else self.payoff_matrix.copy()
+            
         self.human_role = state['human_role']
         self.human_score = state['human_score']
         self.computer_score = state['computer_score']
@@ -288,4 +332,16 @@ class HideAndSeekGame:
 
 
 if __name__ == "__main__":
-    game = HideAndSeekGame(world_size=4)
+    # Example usage with proximity effects enabled
+    game = HideAndSeekGame(world_size=6, use_proximity=True)
+    game.human_role = "hider"
+    
+    # Print debug info to see the payoff matrix with proximity effects
+    game.print_strategy_debug_info()
+    
+    # Example: Human hides at position 2 (index 1), computer searches at position 3 (index 2)
+    # This should demonstrate the proximity effect you described
+    human_move = 1  # Position 2
+    result, hider_pos, seeker_pos = game.play_round(human_move)
+    print("\nExample round result:")
+    print(result)
