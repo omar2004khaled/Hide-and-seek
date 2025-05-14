@@ -349,8 +349,9 @@ class HideAndSeekGame:
         except Exception as e:
             return None, f"Error processing input: {str(e)}"
     
-    def run_simulation(self, rounds=100):
-        """Run automated simulation"""
+    def run_simulation(self, rounds=100, output_file="simulation_results.txt"):
+        """Run automated simulation and save detailed results to a text file"""
+        # Save original state
         original_state = {
             'human_score': self.human_score,
             'computer_score': self.computer_score,
@@ -364,23 +365,100 @@ class HideAndSeekGame:
         self.human_wins = self.computer_wins = 0
         self.rounds_played = 0
         
-        for _ in range(rounds):
-            human_move = random.randint(0, self.world_size - 1)
-            self.play_round(human_move)
+        # Prepare to write to output file
+        with open(output_file, 'w') as f:
+            f.write(f"Hide and Seek Simulation - {rounds} rounds\n")
+            f.write(f"World Size: {self.world_size}\n")
+            f.write(f"Proximity Effects: {'ON' if self.use_proximity else 'OFF'}\n")
+            f.write(f"Grid: {'2D' if self.is_2d else '1D'}\n")
+            f.write(f"Human Role: {self.human_role}\n\n")
+            
+            f.write("=== Round-by-Round Results ===\n")
+            
+            for round_num in range(1, rounds + 1):
+                # Get moves
+                human_move = random.randint(0, self.world_size - 1)
+                computer_move = self.get_computer_move()
+                
+                # Determine positions based on roles
+                if self.human_role == "hider":
+                    hider_pos, seeker_pos = human_move, computer_move
+                else:
+                    hider_pos, seeker_pos = computer_move, human_move
+                
+                # Calculate scores
+                base_score = self.payoff_matrix[hider_pos, seeker_pos]
+                
+                if self.use_proximity:
+                    final_score = self.proximity_matrix[hider_pos, seeker_pos]
+                    distance = self.calculate_distance(hider_pos, seeker_pos)
+                    multiplier = self.get_proximity_multiplier(hider_pos, seeker_pos)
+                else:
+                    final_score = base_score
+                    distance = None
+                    multiplier = None
+                
+                # Update scores
+                self.update_scores(final_score)
+                self.rounds_played += 1
+                
+                # Determine winner
+                if self.human_role == "hider":
+                    human_won = final_score > 0
+                else:
+                    human_won = final_score < 0
+                
+                # Write round details to file
+                f.write(f"\nRound {round_num}:\n")
+                f.write(f"  Hider position: {self.position_to_coords(hider_pos)} ({['Hard','Neutral','Easy'][self.place_types[hider_pos]]})\n")
+                f.write(f"  Seeker position: {self.position_to_coords(seeker_pos)}\n")
+                
+                if hider_pos == seeker_pos:
+                    f.write("  RESULT: Hider found!\n")
+                else:
+                    if self.use_proximity:
+                        f.write(f"  Distance: {distance}, Multiplier: {multiplier:.2f}\n")
+                    f.write("  RESULT: Hider not found\n")
+                
+                f.write(f"  Base score: {base_score:.1f}\n")
+                if self.use_proximity and hider_pos != seeker_pos:
+                    f.write(f"  Final score (with proximity): {final_score:.1f}\n")
+                else:
+                    f.write(f"  Final score: {final_score:.1f}\n")
+                
+                f.write(f"  Winner: {'Human' if human_won else 'Computer'}\n")
+            
+            # Write summary to file
+            f.write("\n=== Simulation Summary ===\n")
+            f.write(f"Total Rounds: {rounds}\n")
+            f.write(f"Human Score: {self.human_score:.1f}\n")
+            f.write(f"Computer Score: {self.computer_score:.1f}\n")
+            f.write(f"Human Wins: {self.human_wins} ({self.human_wins/rounds:.1%})\n")
+            f.write(f"Computer Wins: {self.computer_wins} ({self.computer_wins/rounds:.1%})\n")
         
-        results = {
+        # Print summary to console
+        print("\n=== Simulation Complete ===")
+        print(f"Results saved to {output_file}")
+        print(f"Human Wins: {self.human_wins} ({self.human_wins/rounds:.1%})")
+        print(f"Computer Wins: {self.computer_wins} ({self.computer_wins/rounds:.1%})")
+        print(f"Human Score: {self.human_score:.1f}")
+        print(f"Computer Score: {self.computer_score:.1f}")
+        
+        
+        results= {
             'human_score': self.human_score,
             'computer_score': self.computer_score,
             'human_wins': self.human_wins,
             'computer_wins': self.computer_wins,
-            'rounds_played': rounds
+            'output_file': output_file
+            
         }
         
         # Restore original state
         for key, val in original_state.items():
             setattr(self, key, val)
-        
-        return results
+
+        return results    
     
     def save_state(self, filename):
         """Save game state to file"""

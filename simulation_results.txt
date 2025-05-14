@@ -1,0 +1,814 @@
+Hide and Seek Simulation - 100 rounds
+World Size: 6
+Proximity Effects: OFF
+Grid: 1D
+Human Role: hider
+
+=== Round-by-Round Results ===
+
+Round 1:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 2:
+  Hider position: 2 (Neutral)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 3:
+  Hider position: 4 (Easy)
+  Seeker position: 4
+  RESULT: Hider found!
+  Base score: -0.5
+  Final score: -0.5
+  Winner: Computer
+
+Round 4:
+  Hider position: 6 (Easy)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 5:
+  Hider position: 6 (Easy)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 6:
+  Hider position: 5 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 7:
+  Hider position: 2 (Neutral)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 8:
+  Hider position: 3 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 9:
+  Hider position: 2 (Neutral)
+  Seeker position: 2
+  RESULT: Hider found!
+  Base score: -2.0
+  Final score: -2.0
+  Winner: Computer
+
+Round 10:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 11:
+  Hider position: 6 (Easy)
+  Seeker position: 6
+  RESULT: Hider found!
+  Base score: -0.5
+  Final score: -0.5
+  Winner: Computer
+
+Round 12:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 13:
+  Hider position: 1 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 14:
+  Hider position: 6 (Easy)
+  Seeker position: 6
+  RESULT: Hider found!
+  Base score: -0.5
+  Final score: -0.5
+  Winner: Computer
+
+Round 15:
+  Hider position: 2 (Neutral)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 16:
+  Hider position: 2 (Neutral)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 17:
+  Hider position: 1 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 18:
+  Hider position: 1 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 19:
+  Hider position: 5 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 20:
+  Hider position: 6 (Easy)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 21:
+  Hider position: 3 (Hard)
+  Seeker position: 2
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 22:
+  Hider position: 2 (Neutral)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 23:
+  Hider position: 1 (Hard)
+  Seeker position: 2
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 24:
+  Hider position: 4 (Easy)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 25:
+  Hider position: 6 (Easy)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 26:
+  Hider position: 1 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 27:
+  Hider position: 2 (Neutral)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 28:
+  Hider position: 3 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 29:
+  Hider position: 3 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 30:
+  Hider position: 3 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 31:
+  Hider position: 2 (Neutral)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 32:
+  Hider position: 6 (Easy)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 33:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 34:
+  Hider position: 6 (Easy)
+  Seeker position: 6
+  RESULT: Hider found!
+  Base score: -0.5
+  Final score: -0.5
+  Winner: Computer
+
+Round 35:
+  Hider position: 5 (Hard)
+  Seeker position: 2
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 36:
+  Hider position: 5 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 37:
+  Hider position: 5 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 38:
+  Hider position: 4 (Easy)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 39:
+  Hider position: 2 (Neutral)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 40:
+  Hider position: 3 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 41:
+  Hider position: 1 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 42:
+  Hider position: 6 (Easy)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 43:
+  Hider position: 6 (Easy)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 44:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 45:
+  Hider position: 4 (Easy)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 46:
+  Hider position: 4 (Easy)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 47:
+  Hider position: 3 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 48:
+  Hider position: 1 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 49:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 50:
+  Hider position: 5 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 51:
+  Hider position: 5 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 52:
+  Hider position: 3 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 53:
+  Hider position: 2 (Neutral)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 54:
+  Hider position: 5 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 55:
+  Hider position: 3 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 56:
+  Hider position: 3 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 57:
+  Hider position: 2 (Neutral)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 58:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 59:
+  Hider position: 3 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 60:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 61:
+  Hider position: 6 (Easy)
+  Seeker position: 6
+  RESULT: Hider found!
+  Base score: -0.5
+  Final score: -0.5
+  Winner: Computer
+
+Round 62:
+  Hider position: 3 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 63:
+  Hider position: 5 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 64:
+  Hider position: 5 (Hard)
+  Seeker position: 2
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 65:
+  Hider position: 3 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 66:
+  Hider position: 4 (Easy)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 67:
+  Hider position: 5 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 68:
+  Hider position: 5 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 69:
+  Hider position: 5 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 70:
+  Hider position: 5 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 71:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 72:
+  Hider position: 6 (Easy)
+  Seeker position: 2
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 73:
+  Hider position: 5 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 74:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 75:
+  Hider position: 6 (Easy)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 76:
+  Hider position: 4 (Easy)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 77:
+  Hider position: 6 (Easy)
+  Seeker position: 2
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 78:
+  Hider position: 1 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 79:
+  Hider position: 5 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 80:
+  Hider position: 5 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 81:
+  Hider position: 3 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 82:
+  Hider position: 5 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 83:
+  Hider position: 4 (Easy)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 84:
+  Hider position: 6 (Easy)
+  Seeker position: 2
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 85:
+  Hider position: 6 (Easy)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+Round 86:
+  Hider position: 1 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 87:
+  Hider position: 3 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 88:
+  Hider position: 1 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 89:
+  Hider position: 4 (Easy)
+  Seeker position: 4
+  RESULT: Hider found!
+  Base score: -0.5
+  Final score: -0.5
+  Winner: Computer
+
+Round 90:
+  Hider position: 3 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 91:
+  Hider position: 2 (Neutral)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 92:
+  Hider position: 6 (Easy)
+  Seeker position: 6
+  RESULT: Hider found!
+  Base score: -0.5
+  Final score: -0.5
+  Winner: Computer
+
+Round 93:
+  Hider position: 3 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 94:
+  Hider position: 3 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 95:
+  Hider position: 5 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 96:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 97:
+  Hider position: 2 (Neutral)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 2.0
+  Final score: 2.0
+  Winner: Human
+
+Round 98:
+  Hider position: 3 (Hard)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 99:
+  Hider position: 1 (Hard)
+  Seeker position: 6
+  RESULT: Hider not found
+  Base score: 0.5
+  Final score: 0.5
+  Winner: Human
+
+Round 100:
+  Hider position: 6 (Easy)
+  Seeker position: 4
+  RESULT: Hider not found
+  Base score: 3.0
+  Final score: 3.0
+  Winner: Human
+
+=== Simulation Summary ===
+Total Rounds: 100
+Human Score: 114.0
+Computer Score: 5.5
+Human Wins: 92 (92.0%)
+Computer Wins: 8 (8.0%)

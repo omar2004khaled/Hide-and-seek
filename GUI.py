@@ -258,19 +258,19 @@ class HideAndSeekGUI:
         return int(np.sqrt(n)) ** 2 == n
     
     def create_game_interface(self):
-        """Create the main game interface"""
+        """Create the main game interface with modern styling"""
         self.clear_frame()
         
-        # Main container
-        main_frame = ttk.Frame(self.root)
-        main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        # Main container with padding
+        main_frame = ttk.Frame(self.root, padding=15)
+        main_frame.pack(fill=tk.BOTH, expand=True)
         
         # Top panel - Game info and controls
         top_panel = ttk.Frame(main_frame)
-        top_panel.pack(fill=tk.X, pady=(0, 10))
+        top_panel.pack(fill=tk.X, pady=(0, 15))
         
-        # Game info
-        info_frame = ttk.Frame(top_panel)
+        # Game info frame with card styling - FIXED
+        info_frame = ttk.LabelFrame(top_panel, text="Game Status", padding=10)
         info_frame.pack(side=tk.LEFT, fill=tk.X, expand=True)
         
         # Show world type and dimensions
@@ -278,26 +278,27 @@ class HideAndSeekGUI:
             world_text = f"World: 2D Grid ({self.game.rows}x{self.game.cols})"
         else:
             world_text = f"World: 1D Linear ({self.game.world_size} positions)"
-        ttk.Label(info_frame, text=world_text, font=('Arial', 11)).pack(anchor=tk.W)
+        ttk.Label(info_frame, text=world_text, font=('Segoe UI', 10)).pack(anchor=tk.W, pady=2)
         
         # Show proximity setting
         prox_text = "Proximity Scoring: Enabled" if self.game.use_proximity else "Proximity Scoring: Disabled"
-        ttk.Label(info_frame, text=prox_text, font=('Arial', 11)).pack(anchor=tk.W)
+        ttk.Label(info_frame, text=prox_text, font=('Segoe UI', 10)).pack(anchor=tk.W, pady=2)
         
         role_text = "Hider" if self.game.human_role == "hider" else "Seeker"
-        ttk.Label(info_frame, text=f"Role: {role_text}", font=('Arial', 12, 'bold')).pack(anchor=tk.W)
+        ttk.Label(info_frame, text=f"Role: {role_text}", 
+                 font=('Segoe UI', 11, 'bold'), foreground='#4e73df').pack(anchor=tk.W, pady=2)
         
         self.score_label = ttk.Label(info_frame, 
                                    text=f"Score: You {self.game.human_score} - Computer {self.game.computer_score}",
-                                   font=('Arial', 11))
-        self.score_label.pack(anchor=tk.W)
+                                   font=('Segoe UI', 10, 'bold'))
+        self.score_label.pack(anchor=tk.W, pady=2)
         
         self.rounds_label = ttk.Label(info_frame, 
                                      text=f"Rounds: {self.game.rounds_played} (Wins: You {self.game.human_wins} - Computer {self.game.computer_wins})",
-                                     font=('Arial', 11))
-        self.rounds_label.pack(anchor=tk.W)
+                                     font=('Segoe UI', 10))
+        self.rounds_label.pack(anchor=tk.W, pady=2)
         
-        # Action buttons
+        # Action buttons with consistent styling
         btn_frame = ttk.Frame(top_panel)
         btn_frame.pack(side=tk.RIGHT)
         
@@ -561,13 +562,16 @@ class HideAndSeekGUI:
         confirm = messagebox.askyesno(
             "Run Simulation",
             "Run 100 rounds of simulation with random moves?\n\n"
-            "This will temporarily reset scores for the simulation only."
+            "This will:\n"
+            "1. Temporarily reset scores for simulation\n"
+            "2. Generate detailed results file\n"
+            "3. Show summary when complete"
         )
         
         if not confirm:
             return
         
-        results = self.game.run_simulation(100)
+        results = self.game.run_simulation(rounds=100, output_file="simulation_results.txt")
         
         message = (
             f"Simulation Results (100 rounds):\n\n"
@@ -578,10 +582,38 @@ class HideAndSeekGUI:
             f"Wins:\n"
             f"  You: {results['human_wins']}\n"
             f"  Computer: {results['computer_wins']}\n\n"
-            f"Win rate: {results['human_wins'] / results['rounds_played'] * 100:.1f}%"
+            f"Win rate: {results['human_wins'] / 100 * 100:.1f}%"
         )
         
-        messagebox.showinfo("Simulation Complete", message)
+      
+
+        open_file = messagebox.askyesno(
+        "Simulation Complete", 
+        message + "\n\nWould you like to open the detailed results file?"
+    )
+    
+        if open_file:
+            try:
+                # Cross-platform file opening
+                import subprocess
+                import os
+                import platform
+                
+                filepath = os.path.abspath(results['output_file'])
+                
+                if platform.system() == 'Darwin':       # macOS
+                    subprocess.call(('open', filepath))
+                elif platform.system() == 'Windows':    # Windows
+                    os.startfile(filepath)
+                else:                                   # Linux variants
+                    subprocess.call(('xdg-open', filepath))
+                    
+            except Exception as e:
+                messagebox.showerror(
+                    "Error Opening File",
+                    f"Could not open the file automatically:\n\n{str(e)}\n\n"
+                    f"Please open it manually at:\n{filepath}"
+                )
     
     def reset_game(self):
         """Reset the current game"""
