@@ -16,7 +16,7 @@ class HideAndSeekGUI:
         self.root.geometry("1200x800")
         self.root.minsize(1000, 700)
         
-        # Configure style
+        # Configure style with modern colors
         self.style = ttk.Style()
         self.style.theme_use('clam')
         self.configure_styles()
@@ -28,19 +28,57 @@ class HideAndSeekGUI:
         self.icons = self.load_icons()
     
     def configure_styles(self):
-        """Configure GUI styles"""
-        self.style.configure('TFrame', background='#f0f0f0')
-        self.style.configure('TLabel', background='#f0f0f0', font=('Arial', 11))
-        self.style.configure('Header.TLabel', font=('Arial', 16, 'bold'))
-        self.style.configure('TButton', font=('Arial', 11))
-        self.style.configure('Game.TButton', font=('Arial', 12, 'bold'))
-        self.style.configure('TCombobox', font=('Arial', 11))
-        self.style.configure('TRadiobutton', background='#f0f0f0')
+        """Configure GUI styles with modern colors"""
+        # Color palette
+        bg_color = '#f8f9fa'
+        primary_color = '#4e73df'
+        secondary_color = '#858796'
+        success_color = '#1cc88a'
+        info_color = '#36b9cc'
+        warning_color = '#f6c23e'
+        danger_color = '#e74a3b'
+        dark_color = '#5a5c69'
         
-        # Configure notebook style for tabs if used
-        self.style.configure('TNotebook', background='#f0f0f0')
-        self.style.configure('TNotebook.Tab', background='#d9d9d9', padding=[10, 5])
-        self.style.map('TNotebook.Tab', background=[('selected', '#f0f0f0')])
+        # Configure standard styles first
+        self.style.configure('TFrame', background=bg_color)
+        self.style.configure('TLabel', background=bg_color, font=('Segoe UI', 10))
+        self.style.configure('Header.TLabel', font=('Segoe UI', 18, 'bold'), foreground=dark_color)
+        self.style.configure('TButton', font=('Segoe UI', 10))
+        self.style.configure('TCombobox', font=('Segoe UI', 10))
+        self.style.configure('TRadiobutton', background=bg_color, font=('Segoe UI', 10))
+        self.style.configure('TNotebook', background=bg_color)
+        self.style.configure('TEntry', font=('Segoe UI', 10))
+        self.style.configure('TSpinbox', font=('Segoe UI', 10))
+        
+        # Configure LabelFrame - fix for the error
+        self.style.configure('TLabelframe', background=bg_color, font=('Segoe UI', 11, 'bold'), foreground=dark_color)
+        self.style.configure('TLabelframe.Label', background=bg_color, font=('Segoe UI', 11, 'bold'), foreground=dark_color)
+        
+        # Configure Tab style
+        self.style.configure('TNotebook.Tab', background=secondary_color, foreground='white', padding=[15, 5], font=('Segoe UI', 10))
+        self.style.map('TNotebook.Tab', background=[('selected', primary_color)])
+        
+        # Custom button styles
+        self.style.configure('Game.TButton', font=('Segoe UI', 11, 'bold'))
+        self.style.map('Game.TButton', foreground=[('!disabled', 'white')], background=[('!disabled', primary_color)])
+        
+        self.style.configure('Primary.TButton', font=('Segoe UI', 10))
+        self.style.map('Primary.TButton', foreground=[('!disabled', 'white')], background=[('!disabled', primary_color)])
+        
+        self.style.configure('Success.TButton', font=('Segoe UI', 10))
+        self.style.map('Success.TButton', foreground=[('!disabled', 'white')], background=[('!disabled', success_color)])
+        
+        self.style.configure('Info.TButton', font=('Segoe UI', 10))
+        self.style.map('Info.TButton', foreground=[('!disabled', 'white')], background=[('!disabled', info_color)])
+        
+        self.style.configure('Warning.TButton', font=('Segoe UI', 10))
+        self.style.map('Warning.TButton', foreground=[('!disabled', 'white')], background=[('!disabled', warning_color)])
+        
+        self.style.configure('Danger.TButton', font=('Segoe UI', 10))
+        self.style.map('Danger.TButton', foreground=[('!disabled', 'white')], background=[('!disabled', danger_color)])
+        
+        # Configure the root window background
+        self.root.configure(background=bg_color)
     
     def load_icons(self):
         """Load icons for the GUI"""
@@ -65,76 +103,80 @@ class HideAndSeekGUI:
         return icons
     
     def create_setup_frame(self):
-        """Create initial game setup frame"""
+        """Create initial game setup frame with modern styling"""
         self.clear_frame()
         
-        main_frame = ttk.Frame(self.root, padding=20)
+        # Main container with padding
+        main_frame = ttk.Frame(self.root, padding=(30, 20))
         main_frame.pack(fill=tk.BOTH, expand=True)
         
-        # Header
+        # Header with accent color
         header = ttk.Frame(main_frame)
-        header.pack(fill=tk.X, pady=(0, 20))
+        header.pack(fill=tk.X, pady=(0, 30))
         ttk.Label(header, text="Hide and Seek Game", style='Header.TLabel').pack()
         
-        # Configuration panel
-        config_frame = ttk.LabelFrame(main_frame, text="Game Configuration", padding=15)
-        config_frame.pack(fill=tk.X, pady=10)
+        # Configuration panel with card-like appearance - FIXED: Use TLabelframe instead of TLabelFrame
+        config_frame = ttk.LabelFrame(main_frame, text="Game Configuration", padding=20)
+        config_frame.pack(fill=tk.X, pady=10, ipady=10)
         
-        # World type
+        # World type selection
         self.type_frame = ttk.Frame(config_frame)
-        self.type_frame.pack(fill=tk.X, pady=5)
-        ttk.Label(self.type_frame, text="World Type:").pack(side=tk.LEFT)
+        self.type_frame.pack(fill=tk.X, pady=(0, 15))
+        ttk.Label(self.type_frame, text="World Type:", font=('Segoe UI', 10, 'bold')).pack(side=tk.LEFT)
         self.dim_var = tk.BooleanVar(value=False)
         ttk.Checkbutton(self.type_frame, text="2D Grid", variable=self.dim_var, 
-                command=self.update_grid_options).pack(side=tk.LEFT, padx=10)
+                       command=self.update_grid_options, style='TRadiobutton').pack(side=tk.LEFT, padx=15)
         
         # Grid size frame
         self.grid_frame = ttk.Frame(config_frame)
         self.grid_frame.pack(fill=tk.X, pady=5)
-        ttk.Label(self.grid_frame, text="Grid Size:").pack(side=tk.LEFT)
-        
-        """self.grid_size_var = tk.StringVar(value="4x4")
-        grid_options = ["2x2", "3x3", "4x4", "5x5", "6x6"]
-        ttk.Combobox(self.grid_frame, textvariable=self.grid_size_var, 
-                    values=grid_options, state="readonly", width=5).pack(side=tk.LEFT, padx=10)"""
+        ttk.Label(self.grid_frame, text="Grid Size:", font=('Segoe UI', 10, 'bold')).pack(side=tk.LEFT)
         
         self.grid_size_var = tk.StringVar(value="4x4")
-        ttk.Entry(self.grid_frame, textvariable=self.grid_size_var, width=5).pack(side=tk.LEFT, padx=10)
+        grid_entry = ttk.Entry(self.grid_frame, textvariable=self.grid_size_var, width=8, font=('Segoe UI', 10))
+        grid_entry.pack(side=tk.LEFT, padx=10)
         
-                
         # Linear size frame (initially hidden)
         self.linear_frame = ttk.Frame(config_frame)
-        ttk.Label(self.linear_frame, text="World Size:").pack(side=tk.LEFT)
+        ttk.Label(self.linear_frame, text="World Size:", font=('Segoe UI', 10, 'bold')).pack(side=tk.LEFT)
         self.linear_size_var = tk.IntVar(value=4)
-        ttk.Spinbox(self.linear_frame, from_=4, to=36, textvariable=self.linear_size_var, width=5).pack(side=tk.LEFT, padx=10)
+        ttk.Spinbox(self.linear_frame, from_=4, to=36, textvariable=self.linear_size_var, 
+                   width=5, font=('Segoe UI', 10)).pack(side=tk.LEFT, padx=10)
         
         # Set default
         self.update_grid_options()
         
         # Game options
         opt_frame = ttk.Frame(config_frame)
-        opt_frame.pack(fill=tk.X, pady=5)
-        ttk.Label(opt_frame, text="Game Options:").pack(side=tk.LEFT)
-        self.prox_var = tk.BooleanVar(value=False)  # Default to proximity scoring on
-        ttk.Checkbutton(opt_frame, text="Proximity Scoring", variable=self.prox_var).pack(side=tk.LEFT, padx=10)
+        opt_frame.pack(fill=tk.X, pady=15)
+        ttk.Label(opt_frame, text="Game Options:", font=('Segoe UI', 10, 'bold')).pack(side=tk.LEFT)
+        self.prox_var = tk.BooleanVar(value=False)
+        ttk.Checkbutton(opt_frame, text="Proximity Scoring", variable=self.prox_var, 
+                       style='TRadiobutton').pack(side=tk.LEFT, padx=15)
         
-        # Player role
-        role_frame = ttk.LabelFrame(config_frame, text="Player Role", padding=10)
-        role_frame.pack(fill=tk.X, pady=10)
+        # Player role selection with card styling - FIXED: Use LabelFrame without style
+        role_frame = ttk.LabelFrame(config_frame, text="Player Role", padding=15)
+        role_frame.pack(fill=tk.X, pady=15)
+        
         self.role_var = tk.StringVar(value="hider")
-        ttk.Radiobutton(role_frame, text="Hider", variable=self.role_var, value="hider").pack(side=tk.LEFT, padx=10)
-        ttk.Radiobutton(role_frame, text="Seeker", variable=self.role_var, value="seeker").pack(side=tk.LEFT, padx=10)
+        ttk.Radiobutton(role_frame, text="Hider", variable=self.role_var, value="hider",
+                        style='TRadiobutton').pack(side=tk.LEFT, padx=15)
+        ttk.Radiobutton(role_frame, text="Seeker", variable=self.role_var, value="seeker",
+                        style='TRadiobutton').pack(side=tk.LEFT, padx=15)
         
-        # Action buttons
+        # Action buttons with consistent styling
         btn_frame = ttk.Frame(main_frame)
-        btn_frame.pack(fill=tk.X, pady=20)
-        ttk.Button(btn_frame, text="Start Game", style='Game.TButton', 
-                  command=self.start_game).pack(side=tk.LEFT, padx=10)
+        btn_frame.pack(fill=tk.X, pady=(20, 0))
+        
+        start_btn = ttk.Button(btn_frame, text="Start Game", style='Game.TButton', 
+                              command=self.start_game)
+        start_btn.pack(side=tk.LEFT, padx=10, ipady=8, ipadx=15)
         
         # Add load game button if save files exist
         if os.path.exists('saves'):
-            ttk.Button(btn_frame, text="Load Game", style='Game.TButton',
-                      command=self.load_game_dialog).pack(side=tk.LEFT, padx=10)
+            load_btn = ttk.Button(btn_frame, text="Load Game", style='Info.TButton',
+                                command=self.load_game_dialog)
+            load_btn.pack(side=tk.LEFT, padx=10, ipady=5, ipadx=15)
     
     def update_grid_options(self):
         if self.dim_var.get():  # 2D mode

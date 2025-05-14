@@ -298,12 +298,12 @@ class HideAndSeekGame:
             if hider_pos == seeker_pos:
                 return f"You lost! {score:.1f} points (Computer found you at {hider_coords} [{place_type}])"
             else:
-                return f"You won! +{proximity_score if proximity_score is not None else score:.1f} points{proximity_detail} (Hid at {hider_coords} [{place_type}], Computer searched at {seeker_coords})"
+                return f"You won! +{proximity_score if proximity_score is not None else score:.1f} points{proximity_detail} (Hide at {hider_coords} [{place_type}], Computer searched at {seeker_coords})"
         else:
             if hider_pos == seeker_pos:
                 return f"You won! +{-score:.1f} points (Found hider at {hider_coords} [{place_type}])"
             else:
-                return f"You lost! -{proximity_score if proximity_score is not None else score:.1f} points{proximity_detail} (Computer hid at {hider_coords} [{place_type}], you searched at {seeker_coords})"
+                return f"You lost! -{proximity_score if proximity_score is not None else score:.1f} points{proximity_detail} (Computer Hide at {hider_coords} [{place_type}], you searched at {seeker_coords})"
     
     def get_computer_move(self):
         """Get computer's move based on optimal strategy"""
