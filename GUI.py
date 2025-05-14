@@ -80,26 +80,42 @@ class HideAndSeekGUI:
         config_frame = ttk.LabelFrame(main_frame, text="Game Configuration", padding=15)
         config_frame.pack(fill=tk.X, pady=10)
         
-        # World size
-        size_frame = ttk.Frame(config_frame)
-        size_frame.pack(fill=tk.X, pady=5)
-        ttk.Label(size_frame, text="World Size:").pack(side=tk.LEFT)
-        self.size_var = tk.IntVar(value=4)
-        ttk.Spinbox(size_frame, from_=2, to=16, textvariable=self.size_var, width=5).pack(side=tk.LEFT, padx=10)
-        
         # World type
-        type_frame = ttk.Frame(config_frame)
-        type_frame.pack(fill=tk.X, pady=5)
-        ttk.Label(type_frame, text="World Type:").pack(side=tk.LEFT)
+        self.type_frame = ttk.Frame(config_frame)
+        self.type_frame.pack(fill=tk.X, pady=5)
+        ttk.Label(self.type_frame, text="World Type:").pack(side=tk.LEFT)
         self.dim_var = tk.BooleanVar(value=False)
-        ttk.Checkbutton(type_frame, text="2D Grid", variable=self.dim_var, 
-                       command=self.update_size_limits).pack(side=tk.LEFT, padx=10)
+        ttk.Checkbutton(self.type_frame, text="2D Grid", variable=self.dim_var, 
+                command=self.update_grid_options).pack(side=tk.LEFT, padx=10)
+        
+        # Grid size frame
+        self.grid_frame = ttk.Frame(config_frame)
+        self.grid_frame.pack(fill=tk.X, pady=5)
+        ttk.Label(self.grid_frame, text="Grid Size:").pack(side=tk.LEFT)
+        
+        """self.grid_size_var = tk.StringVar(value="4x4")
+        grid_options = ["2x2", "3x3", "4x4", "5x5", "6x6"]
+        ttk.Combobox(self.grid_frame, textvariable=self.grid_size_var, 
+                    values=grid_options, state="readonly", width=5).pack(side=tk.LEFT, padx=10)"""
+        
+        self.grid_size_var = tk.StringVar(value="4x4")
+        ttk.Entry(self.grid_frame, textvariable=self.grid_size_var, width=5).pack(side=tk.LEFT, padx=10)
+        
+                
+        # Linear size frame (initially hidden)
+        self.linear_frame = ttk.Frame(config_frame)
+        ttk.Label(self.linear_frame, text="World Size:").pack(side=tk.LEFT)
+        self.linear_size_var = tk.IntVar(value=4)
+        ttk.Spinbox(self.linear_frame, from_=4, to=36, textvariable=self.linear_size_var, width=5).pack(side=tk.LEFT, padx=10)
+        
+        # Set default
+        self.update_grid_options()
         
         # Game options
         opt_frame = ttk.Frame(config_frame)
         opt_frame.pack(fill=tk.X, pady=5)
         ttk.Label(opt_frame, text="Game Options:").pack(side=tk.LEFT)
-        self.prox_var = tk.BooleanVar(value=False)
+        self.prox_var = tk.BooleanVar(value=False)  # Default to proximity scoring on
         ttk.Checkbutton(opt_frame, text="Proximity Scoring", variable=self.prox_var).pack(side=tk.LEFT, padx=10)
         
         # Player role
@@ -120,35 +136,74 @@ class HideAndSeekGUI:
             ttk.Button(btn_frame, text="Load Game", style='Game.TButton',
                       command=self.load_game_dialog).pack(side=tk.LEFT, padx=10)
     
-    def update_size_limits(self):
-        """Update size limits based on 1D/2D selection"""
+    def update_grid_options(self):
         if self.dim_var.get():  # 2D mode
-            self.size_var.set(4)  # Default to 4 (2x2)
+            self.linear_frame.pack_forget()
+            self.grid_frame.pack(fill=tk.X, pady=5 , after=self.type_frame)
+        else:                   # 1D mode
+            self.grid_frame.pack_forget()
+            self.linear_frame.pack(fill=tk.X, pady=5 , after=self.type_frame)
+    
+    def get_world_size(self):
+        """Get world size based on current settings"""
+        if self.dim_var.get():  # 2D mode
+            grid_size = self.grid_size_var.get()
+            rows, cols = map(int, grid_size.split('x'))
+            return rows * cols
+        else:  # 1D mode
+            return self.linear_size_var.get()
+    
+    def get_grid_dimensions(self):
+        """Get grid dimensions for 2D mode"""
+        if self.dim_var.get():
+            grid_size = self.grid_size_var.get()
+            rows, cols = map(int, grid_size.split('x'))
+            return rows, cols
         else:
-            self.size_var.set(4)  # Default to 4 for 1D
+            # For 1D, treat as Nx1 grid
+            return self.linear_size_var.get(), 1
     
     def start_game(self):
         """Initialize game with selected parameters"""
         try:
-            world_size = self.size_var.get()
-            if world_size < 2:
-                raise ValueError("World size must be at least 2")
-            if self.dim_var.get() and not self.is_perfect_square(world_size):
-                raise ValueError("For 2D world, size must be a perfect square (4, 9, 16, etc.)")
-            
+            is_2d = self.dim_var.get()
+
+            # Validate and get world size
+            if is_2d:
+                grid_size = self.grid_size_var.get()
+                try:
+                    rows, cols = map(int, grid_size.lower().split('x'))
+                    if rows < 2 or cols < 2:
+                        raise ValueError
+                except ValueError:
+                    raise ValueError("Invalid grid size. Please enter in format like '4x4' with values ≥ 2.")
+                world_size = rows * cols
+            else:
+                world_size = self.get_world_size()
+                if world_size < 2:
+                    raise ValueError("World size must be at least 2.")
+
+            # Initialize game
             self.game = HideAndSeekGame(
                 world_size=world_size,
                 use_proximity=self.prox_var.get(),
-                is_2d=self.dim_var.get()
+                is_2d=is_2d
             )
+
+            # If 2D mode, set grid dimensions
+            if is_2d:
+                self.game.rows = rows
+                self.game.cols = cols
+
             self.game.human_role = self.role_var.get()
             self.create_game_interface()
-            
+
             # Print debug info to console
             self.game.print_strategy_debug_info()
-            
+
         except ValueError as e:
             messagebox.showerror("Configuration Error", str(e))
+
     
     def is_perfect_square(self, n):
         """Check if a number is a perfect square"""
@@ -169,6 +224,17 @@ class HideAndSeekGUI:
         # Game info
         info_frame = ttk.Frame(top_panel)
         info_frame.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        
+        # Show world type and dimensions
+        if self.game.is_2d:
+            world_text = f"World: 2D Grid ({self.game.rows}x{self.game.cols})"
+        else:
+            world_text = f"World: 1D Linear ({self.game.world_size} positions)"
+        ttk.Label(info_frame, text=world_text, font=('Arial', 11)).pack(anchor=tk.W)
+        
+        # Show proximity setting
+        prox_text = "Proximity Scoring: Enabled" if self.game.use_proximity else "Proximity Scoring: Disabled"
+        ttk.Label(info_frame, text=prox_text, font=('Arial', 11)).pack(anchor=tk.W)
         
         role_text = "Hider" if self.game.human_role == "hider" else "Seeker"
         ttk.Label(info_frame, text=f"Role: {role_text}", font=('Arial', 12, 'bold')).pack(anchor=tk.W)
@@ -234,7 +300,12 @@ class HideAndSeekGUI:
         move_frame = ttk.Frame(ctrl_frame)
         move_frame.pack(side=tk.LEFT, padx=10)
         
-        ttk.Label(move_frame, text="Your Move:").pack(side=tk.LEFT)
+        # Move label based on game type
+        if self.game.is_2d:
+            ttk.Label(move_frame, text="Your Position:").pack(side=tk.LEFT)
+        else:
+            ttk.Label(move_frame, text="Your Move:").pack(side=tk.LEFT)
+        
         self.move_var = tk.StringVar()
         moves = [str(i+1) for i in range(self.game.world_size)]
         move_combo = ttk.Combobox(move_frame, textvariable=self.move_var, values=moves, state="readonly")
@@ -340,21 +411,65 @@ class HideAndSeekGUI:
             ['blue', 'green']
         )):
             ax = fig.add_subplot(1, 2, i+1)
-            bars = ax.bar(range(1, self.game.world_size + 1), probs, color=color, alpha=0.7)
+
+            if self.game.is_2d:
+                # 2D grid visualization of strategy
+                rows = self.game.rows
+                cols = self.game.cols
+                strategy_grid = np.zeros((rows, cols))
+                
+                for pos in range(self.game.world_size):
+                    row = pos // cols
+                    col = pos % cols
+                    strategy_grid[row, col] = probs[pos]
+                
+                im = ax.imshow(strategy_grid, cmap='Blues' if i == 0 else 'Greens', 
+                              vmin=0, vmax=max(probs)*1.2)
+                
+                # Add text annotations for significant probabilities
+                for row in range(rows):
+                    for col in range(cols):
+                        pos = row * cols + col
+                        if probs[pos] > threshold:
+                            ax.text(col, row, f'{probs[pos]:.1%}', 
+                                   ha='center', va='center', 
+                                   color='black' if probs[pos] < 0.5 else 'white')
+                
+                # Add grid
+                for row in range(rows):
+                    for col in range(cols):
+                        ax.add_patch(plt.Rectangle((col-0.5, row-0.5), 1, 1, fill=False, 
+                                                 edgecolor='black', linewidth=0.5))
+                
+                ax.set_xticks(range(cols))
+                ax.set_yticks(range(rows))
+                ax.set_xticklabels(range(1, cols+1))
+                ax.set_yticklabels(range(1, rows+1))
+                ax.invert_yaxis()
+                
+                # Add colorbar
+                cbar = fig.colorbar(im, ax=ax, label='Probability')
+
+            else: 
+                bars = ax.bar(range(1, self.game.world_size + 1), probs, color=color, alpha=0.7)
+                
+                # Add labels for significant probabilities
+                for bar in bars:
+                    height = bar.get_height()
+                    if height > threshold:
+                        ax.text(bar.get_x() + bar.get_width()/2, height,
+                            f'{height:.1%}',
+                            ha='center', va='bottom', fontsize=9)
+                        
+                ax.set_xticks(range(1, self.game.world_size + 1))
+                ax.set_ylim(0, max(probs)*1.2)        
             
-            # Add labels for significant probabilities
-            for bar in bars:
-                height = bar.get_height()
-                if height > threshold:
-                    ax.text(bar.get_x() + bar.get_width()/2, height,
-                           f'{height:.1%}',
-                           ha='center', va='bottom', fontsize=9)
-            
+
             ax.set_title(title, pad=15)
             ax.set_xlabel("Position", labelpad=10)
-            ax.set_ylabel("Probability", labelpad=10)
-            ax.set_xticks(range(1, self.game.world_size + 1))
-            ax.set_ylim(0, max(probs)*1.2)
+            if not self.game.is_2d:
+                ax.set_ylabel("Probability", labelpad=10)
+
         
         fig.tight_layout(pad=3.0)
         canvas = FigureCanvasTkAgg(fig, parent)
