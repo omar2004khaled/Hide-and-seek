@@ -164,47 +164,53 @@ class HideAndSeekGUI:
             return self.linear_size_var.get(), 1
     
     def start_game(self):
-        """Initialize game with selected parameters"""
-        try:
-            is_2d = self.dim_var.get()
+            """Initialize game with selected parameters"""
+            
+            try:
+                is_2d = self.dim_var.get()
 
-            # Validate and get world size
-            if is_2d:
-                grid_size = self.grid_size_var.get()
-                try:
-                    rows, cols = map(int, grid_size.lower().split('x'))
-                    if rows < 2 or cols < 2:
-                        raise ValueError
-                except ValueError:
-                    raise ValueError("Invalid grid size. Please enter in format like '4x4' with values ≥ 2.")
-                world_size = rows * cols
-            else:
-                world_size = self.get_world_size()
-                if world_size < 2:
-                    raise ValueError("World size must be at least 2.")
+                # Validate and get world size
+                if is_2d:
+                    grid_size = self.grid_size_var.get()
+                    if(grid_size.count('x') != 1 ):
+                            raise ValueError("Invalid grid size format. Use 'NxN' (e.g., 4x4).")
+                    try:
+                        rows, cols = map(int, grid_size.lower().split('x'))
+                        if rows < 2 or cols < 2:
+                            raise ValueError("Grid dimensions must be at least 2x2.")
+                        if rows != cols:
+                            raise ValueError("Grid must be square (e.g., 4x4).")
+                        
+                    except ValueError as e:
+                        # This will catch both our custom errors and conversion errors
+                        raise ValueError(str(e))
+                    world_size = rows * cols
+                else:
+                    world_size = self.get_world_size()
+                    if world_size < 2:
+                        raise ValueError("World size must be at least 2.")
 
-            # Initialize game
-            self.game = HideAndSeekGame(
-                world_size=world_size,
-                use_proximity=self.prox_var.get(),
-                is_2d=is_2d
+                # Initialize game
+                self.game = HideAndSeekGame(
+                    world_size=world_size,
+                    use_proximity=self.prox_var.get(),
+                    is_2d=is_2d
             )
 
             # If 2D mode, set grid dimensions
-            if is_2d:
-                self.game.rows = rows
-                self.game.cols = cols
+                if is_2d:
+                    self.game.rows = rows
+                    self.game.cols = cols
 
-            self.game.human_role = self.role_var.get()
-            self.create_game_interface()
+                self.game.human_role = self.role_var.get()
+                self.create_game_interface()
 
             # Print debug info to console
-            self.game.print_strategy_debug_info()
+                self.game.print_strategy_debug_info()
 
-        except ValueError as e:
-            messagebox.showerror("Configuration Error", str(e))
-
-    
+            except ValueError as e:
+                messagebox.showerror("Configuration Error", str(e))
+            
     def is_perfect_square(self, n):
         """Check if a number is a perfect square"""
         return int(np.sqrt(n)) ** 2 == n
