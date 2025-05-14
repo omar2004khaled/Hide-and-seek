@@ -84,9 +84,9 @@ class HideAndSeekGame:
         # More distinct payoffs for each place type
         payoffs = {
             # (found_payoff, not_found_payoff)
-            0: (-6, 0.5),  # hard for seeker
-            1: (-2, 2),    # neutral for seeker
-            2: (-0.5, 3)   # easy for seeker
+            0:  (-3,1),  # hard for seeker
+            1: (-1,1),    # neutral for seeker
+            2:  (-1,2)  # easy for seeker
         }
         
         for h in range(self.world_size):
