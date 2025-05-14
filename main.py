@@ -49,13 +49,22 @@ class HideAndSeekGame:
         return place_types
     
     def calculate_distance(self, pos1, pos2):
-        """Calculate absolute distance between positions"""
+        """Calculate distance between positions based on game dimension"""
         if self.is_2d:
-            x1, y1 = pos1 // self.cols, pos1 % self.cols
-            x2, y2 = pos2 // self.cols, pos2 % self.cols
-            return abs(x1 - x2) + abs(y1 - y2)  # Manhattan distance for 2D
+            # Convert linear positions to 2D coordinates
+            row1, col1 = pos1 // self.cols, pos1 % self.cols
+            row2, col2 = pos2 // self.cols, pos2 % self.cols
+            return abs(row1 - row2) + abs(col1 - col2)  # Manhattan distance for 2D
         else:
             return abs(pos1 - pos2)  # Linear distance for 1D
+    
+    def position_to_coords(self, pos):
+        """Convert a linear position to coordinates string"""
+        if self.is_2d:
+            col ,row = pos // self.cols, pos % self.cols
+            return f"({row+1},{col+1})"
+        else:
+            return f"{pos+1}"
     
     def get_proximity_multiplier(self, pos1, pos2):
         """Get proximity multiplier based on the distance between positions"""
@@ -90,7 +99,7 @@ class HideAndSeekGame:
         return matrix
     
     def apply_proximity_effects(self):
-        """Apply proximity effects to create a separate proximity matrix (for reference only)"""
+        """Apply proximity effects to create a separate proximity matrix"""
         proximity_matrix = np.zeros((self.world_size, self.world_size))
         
         for h in range(self.world_size):
@@ -162,24 +171,68 @@ class HideAndSeekGame:
         print("\n=== Strategy Debug Info ===")
         print("Place Types:", [['Hard','Neutral','Easy'][t] for t in self.place_types])
         
+        # Print place types in 2D grid format if is_2d
+        if self.is_2d:
+            print("\nGrid Layout of Place Types:")
+            for row in reversed(range(self.rows)):
+                row_str = ""
+                for col in range(self.cols):
+                    pos = row * self.cols + col
+                    place_type = ['H','N','E'][self.place_types[pos]]
+                    row_str += f"{place_type} "
+                print(row_str)
+        
         print("\nPayoff Matrix (Hider's perspective) - USED FOR GAME SCORING:")
         for i, row in enumerate(self.payoff_matrix):
-            print(f"Pos {i+1:2} ({['Hard','Neutral','Easy'][self.place_types[i]]}):", 
+            pos_str = self.position_to_coords(i)
+            print(f"Pos {pos_str:>5} ({['Hard','Neutral','Easy'][self.place_types[i]]}):", 
                   " ".join(f"{x:5.1f}" for x in row))
         
         if self.use_proximity:
-            print("\nProximity Matrix (NOT USED FOR SCORING - Reference Only):")
+            print("\nProximity Matrix (WITH PROXIMITY EFFECTS APPLIED):")
             for i, row in enumerate(self.proximity_matrix):
-                print(f"Pos {i+1:2} ({['Hard','Neutral','Easy'][self.place_types[i]]}):", 
+                pos_str = self.position_to_coords(i)
+                print(f"Pos {pos_str:>5} ({['Hard','Neutral','Easy'][self.place_types[i]]}):", 
                     " ".join(f"{x:5.1f}" for x in row))
         
         print("\nHider Probabilities:")
         for i, p in enumerate(self.hider_probabilities):
-            print(f"Pos {i+1:2}: {p:.1%}")
+            pos_str = self.position_to_coords(i)
+            print(f"Pos {pos_str:>5}: {p:.1%}")
         
         print("\nSeeker Probabilities:")
         for i, p in enumerate(self.seeker_probabilities):
-            print(f"Pos {i+1:2}: {p:.1%}")
+            pos_str = self.position_to_coords(i)
+            print(f"Pos {pos_str:>5}: {p:.1%}")
+    
+    def visualize_grid(self, hider_pos=None, seeker_pos=None):
+        """Visualize the 2D grid with place types and player positions"""
+        if not self.is_2d:
+            print("Grid visualization only available in 2D mode")
+            return
+        
+        # Type representation: H(ard), N(eutral), E(asy)
+        type_chars = ['H', 'N', 'E']
+        
+        print("\n  " + " ".join(f"{i+1}" for i in range(self.cols)))
+        print("  " + "-" * (self.cols * 2 - 1))
+        
+        for row in reversed(range(self.rows)):
+            row_str = f"{row+1}|"
+            for col in range(self.cols):
+                pos = row * self.cols + col
+                cell = type_chars[self.place_types[pos]]
+                
+                # Add player markers
+                if pos == hider_pos and pos == seeker_pos:
+                    cell = "X"  # Both at same position
+                elif pos == hider_pos:
+                    cell = "H"  # Hider
+                elif pos == seeker_pos:
+                    cell = "S"  # Seeker
+                
+                row_str += f"{cell} "
+            print(row_str)
     
     def play_round(self, human_move):
         """Play one round of the game"""
@@ -197,18 +250,22 @@ class HideAndSeekGame:
         proximity_score = self.proximity_matrix[hider_pos, seeker_pos] if use_proximity else None
         proximity_multiplier = self.get_proximity_multiplier(hider_pos, seeker_pos) if use_proximity else None
 
-        # Pass both scores to update_scores
-        self.update_scores(base_score, proximity_score)
+        # Update scores based on actual used score (proximity if enabled)
+        final_score = proximity_score if use_proximity else base_score
+        self.update_scores(final_score)
 
         self.rounds_played += 1
+        
+        # Visualize the grid if in 2D mode
+        if self.is_2d:
+            self.visualize_grid(hider_pos, seeker_pos)
+            
         return self.format_result(
             base_score, hider_pos, seeker_pos, proximity_score, proximity_multiplier
         ), hider_pos, seeker_pos
 
-    def update_scores(self, base_score, proximity_score):
-        """Update scores, using proximity score if available"""
-        score = proximity_score if proximity_score is not None else base_score
-
+    def update_scores(self, score):
+        """Update scores based on the final score (with proximity effects if applicable)"""
         if self.human_role == "hider":
             if score > 0:
                 self.human_score += score
@@ -228,26 +285,69 @@ class HideAndSeekGame:
     def format_result(self, score, hider_pos, seeker_pos, proximity_score=None, proximity_multiplier=None):
         """Format the result message with proximity details if applicable"""
         place_type = ['Hard', 'Neutral', 'Easy'][self.place_types[hider_pos]]
+        hider_coords = self.position_to_coords(hider_pos)
+        seeker_coords = self.position_to_coords(seeker_pos)
         
         # Create a detailed message that explains proximity scoring if applicable
         proximity_detail = ""
         if proximity_score is not None and proximity_multiplier is not None:
             distance = self.calculate_distance(hider_pos, seeker_pos)
-            proximity_detail = f" (Proximity score would be: {proximity_score:.1f}, Distance: {distance}, Multiplier: {proximity_multiplier:.2f}, but using base score)"
+            proximity_detail = f" (Distance: {distance}, Multiplier: {proximity_multiplier:.2f}, Score with proximity: {proximity_score:.1f})"
         
         if self.human_role == "hider":
-            if score > 0:
-                return f"You won! +{score:.1f} points{proximity_detail} (Hid at {hider_pos+1} [{place_type}], Computer searched at {seeker_pos+1})"
-            return f"You lost! {score:.1f} points (Computer found you at {hider_pos+1} [{place_type}])"
+            if hider_pos == seeker_pos:
+                return f"You lost! {score:.1f} points (Computer found you at {hider_coords} [{place_type}])"
+            else:
+                return f"You won! +{proximity_score if proximity_score is not None else score:.1f} points{proximity_detail} (Hid at {hider_coords} [{place_type}], Computer searched at {seeker_coords})"
         else:
-            if score > 0:
-                return f"You lost! -{score:.1f} points{proximity_detail} (Computer hid at {hider_pos+1} [{place_type}], you searched at {seeker_pos+1})"
-            return f"You won! +{-score:.1f} points (Found hider at {hider_pos+1} [{place_type}])"
+            if hider_pos == seeker_pos:
+                return f"You won! +{-score:.1f} points (Found hider at {hider_coords} [{place_type}])"
+            else:
+                return f"You lost! -{proximity_score if proximity_score is not None else score:.1f} points{proximity_detail} (Computer hid at {hider_coords} [{place_type}], you searched at {seeker_coords})"
     
     def get_computer_move(self):
         """Get computer's move based on optimal strategy"""
         probs = self.seeker_probabilities if self.human_role == "hider" else self.hider_probabilities
         return np.random.choice(self.world_size, p=probs)
+    
+    def convert_input_to_position(self, input_str):
+        """Convert user input to game position based on game dimension"""
+        try:
+            if self.is_2d:
+                # For 2D, accept inputs like "2,3" or "(2,3)" for row 2, column 3
+                # Remove parentheses and split by comma
+                clean_input = input_str.replace("(", "").replace(")", "").strip()
+                parts = clean_input.split(",")
+                
+                if len(parts) != 2:
+                    return None, "Please enter coordinates as 'row,column' (e.g., '2,3')"
+                
+                try:
+                    row = int(parts[0].strip()) - 1  # Convert to 0-indexed
+                    col = int(parts[1].strip()) - 1  # Convert to 0-indexed
+                    
+                    if row < 0 or row >= self.rows or col < 0 or col >= self.cols:
+                        return None, f"Coordinates out of range. Please enter values between (1,1) and ({self.rows},{self.cols})"
+                    
+                    pos = row * self.cols + col
+                    return pos, None
+                
+                except ValueError:
+                    return None, "Invalid coordinates. Please enter numeric values (e.g., '2,3')"
+            else:
+                # For 1D, just accept a single number
+                try:
+                    pos = int(input_str.strip()) - 1  # Convert to 0-indexed
+                    
+                    if pos < 0 or pos >= self.world_size:
+                        return None, f"Position out of range. Please enter a value between 1 and {self.world_size}"
+                    
+                    return pos, None
+                
+                except ValueError:
+                    return None, "Invalid position. Please enter a numeric value"
+        except Exception as e:
+            return None, f"Error processing input: {str(e)}"
     
     def run_simulation(self, rounds=100):
         """Run automated simulation"""
@@ -288,6 +388,8 @@ class HideAndSeekGame:
             'world_size': self.world_size,
             'use_proximity': self.use_proximity,
             'is_2d': self.is_2d,
+            'rows': self.rows,
+            'cols': self.cols,
             'place_types': self.place_types,
             'payoff_matrix': self.payoff_matrix.tolist(),
             'proximity_matrix': self.proximity_matrix.tolist() if self.use_proximity else None,
@@ -310,8 +412,8 @@ class HideAndSeekGame:
         self.world_size = state['world_size']
         self.use_proximity = state['use_proximity']
         self.is_2d = state['is_2d']
-        self.rows = int(np.sqrt(self.world_size)) if self.is_2d else 1
-        self.cols = self.world_size // self.rows if self.is_2d else self.world_size
+        self.rows = state.get('rows', int(np.sqrt(self.world_size)) if self.is_2d else 1)
+        self.cols = state.get('cols', self.world_size // self.rows if self.is_2d else self.world_size)
         self.place_types = state['place_types']
         self.payoff_matrix = np.array(state['payoff_matrix'])
         
@@ -331,16 +433,20 @@ class HideAndSeekGame:
 
 
 if __name__ == "__main__":
-    # Example usage with proximity effects enabled
-    game = HideAndSeekGame(world_size=6, use_proximity=True)
+    # Example usage with 2D grid and proximity effects enabled
+    game = HideAndSeekGame(world_size=9, use_proximity=False, is_2d=True)
     game.human_role = "hider"
     
     # Print debug info to see the payoff matrix with proximity effects
     game.print_strategy_debug_info()
     
-    # Example: Human hides at position 2 (index 1), computer searches at position 3 (index 2)
-    # This should demonstrate the proximity effect you described
-    human_move = 1  # Position 2
+    # Example: Demonstrate grid visualization
+    print("\nInitial grid:")
+    game.visualize_grid()
+    
+    # Example: Human hides at position (2,2)
+    # Convert this to linear position: row * cols + col = 1 * 3 + 1 = 4 (0-indexed)
+    human_move = 4  # Position (2,2) in a 3x3 grid
     result, hider_pos, seeker_pos = game.play_round(human_move)
     print("\nExample round result:")
     print(result)
