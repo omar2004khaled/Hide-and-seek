@@ -452,7 +452,7 @@ class HideAndSeekGUI:
         fig = plt.Figure(figsize=(10, 5), dpi=100)
         
         # Calculate significance threshold (hide very small probabilities)
-        threshold = 0.5 / self.game.world_size
+        threshold = 0.1 / self.game.world_size
         
         for i, (probs, title, color) in enumerate(zip(
             [self.game.hider_probabilities, self.game.seeker_probabilities],
