@@ -265,20 +265,23 @@ class HideAndSeekGame:
         ), hider_pos, seeker_pos
 
     def update_scores(self, score):
-        """Update scores based on the final score (with proximity effects if applicable)"""
+        """Update scores in a zero-sum fashion"""
         if self.human_role == "hider":
-            if score > 0:
-                self.human_score += score
+            self.human_score += score
+            self.computer_score -= score
+        else:
+            self.human_score -= score
+            self.computer_score += score
+
+        if score > 0:
+            if self.human_role == "hider":
                 self.human_wins += 1
             else:
-                self.computer_score -= score
                 self.computer_wins += 1
         else:
-            if score > 0:
-                self.computer_score += score
+            if self.human_role == "hider":
                 self.computer_wins += 1
             else:
-                self.human_score -= score
                 self.human_wins += 1
 
     
@@ -296,14 +299,14 @@ class HideAndSeekGame:
         
         if self.human_role == "hider":
             if hider_pos == seeker_pos:
-                return f"You lost! {score:.1f} points (Computer found you at {hider_coords} [{place_type}])"
+                return f"Computer found you at {hider_coords} [{place_type}]. You lose {abs(score):.1f} points, computer gains {abs(score):.1f} points."
             else:
-                return f"You won! +{proximity_score if proximity_score is not None else score:.1f} points{proximity_detail} (Hide at {hider_coords} [{place_type}], Computer searched at {seeker_coords})"
+                return f"You win +{proximity_score if proximity_score is not None else score:.1f} points, computer loses {abs(proximity_score if proximity_score is not None else score):.1f} points{proximity_detail} (Hide at {hider_coords} [{place_type}], computer searched at {seeker_coords})"
         else:
             if hider_pos == seeker_pos:
-                return f"You won! +{-score:.1f} points (Found hider at {hider_coords} [{place_type}])"
+                return f"You found hider at {hider_coords} [{place_type}]. You gain +{abs(score):.1f} points, computer loses {abs(score):.1f} points."
             else:
-                return f"You lost! -{proximity_score if proximity_score is not None else score:.1f} points{proximity_detail} (Computer Hide at {hider_coords} [{place_type}], you searched at {seeker_coords})"
+                return f"Computer wins {abs(proximity_score if proximity_score is not None else score):.1f} points, you lose {abs(proximity_score if proximity_score is not None else score):.1f} points{proximity_detail} (Computer hide at {hider_coords} [{place_type}], you searched at {seeker_coords})"
     
     def get_computer_move(self):
         """Get computer's move based on optimal strategy"""
@@ -350,7 +353,7 @@ class HideAndSeekGame:
             return None, f"Error processing input: {str(e)}"
     
     def run_simulation(self, rounds=100, output_file="simulation_results.txt"):
-        """Run automated simulation and save detailed results to a text file"""
+        """Run automated simulation and save detailed results to a text file (zero-sum)"""
         # Save original state
         original_state = {
             'human_score': self.human_score,
@@ -367,7 +370,7 @@ class HideAndSeekGame:
         
         # Prepare to write to output file
         with open(output_file, 'w') as f:
-            f.write(f"Hide and Seek Simulation - {rounds} rounds\n")
+            f.write(f"Hide and Seek Simulation - {rounds} rounds (Zero-Sum)\n")
             f.write(f"World Size: {self.world_size}\n")
             f.write(f"Proximity Effects: {'ON' if self.use_proximity else 'OFF'}\n")
             f.write(f"Grid: {'2D' if self.is_2d else '1D'}\n")
@@ -398,7 +401,7 @@ class HideAndSeekGame:
                     distance = None
                     multiplier = None
                 
-                # Update scores
+                # Update scores (zero-sum)
                 self.update_scores(final_score)
                 self.rounds_played += 1
                 
@@ -426,6 +429,8 @@ class HideAndSeekGame:
                 else:
                     f.write(f"  Final score: {final_score:.1f}\n")
                 
+                f.write(f"  Human points: {final_score if self.human_role == 'hider' else -final_score:.1f}\n")
+                f.write(f"  Computer points: {-final_score if self.human_role == 'hider' else final_score:.1f}\n")
                 f.write(f"  Winner: {'Human' if human_won else 'Computer'}\n")
             
             # Write summary to file
@@ -435,6 +440,7 @@ class HideAndSeekGame:
             f.write(f"Computer Score: {self.computer_score:.1f}\n")
             f.write(f"Human Wins: {self.human_wins} ({self.human_wins/rounds:.1%})\n")
             f.write(f"Computer Wins: {self.computer_wins} ({self.computer_wins/rounds:.1%})\n")
+            f.write(f"Net Score (Human - Computer): {self.human_score - self.computer_score:.1f}\n")
         
         # Print summary to console
         print("\n=== Simulation Complete ===")
@@ -443,22 +449,21 @@ class HideAndSeekGame:
         print(f"Computer Wins: {self.computer_wins} ({self.computer_wins/rounds:.1%})")
         print(f"Human Score: {self.human_score:.1f}")
         print(f"Computer Score: {self.computer_score:.1f}")
+        print(f"Net Score (Human - Computer): {self.human_score - self.computer_score:.1f}")
         
-        
-        results= {
+        results = {
             'human_score': self.human_score,
             'computer_score': self.computer_score,
             'human_wins': self.human_wins,
             'computer_wins': self.computer_wins,
             'output_file': output_file
-            
         }
         
         # Restore original state
         for key, val in original_state.items():
             setattr(self, key, val)
 
-        return results    
+        return results
     
     def save_state(self, filename):
         """Save game state to file"""
