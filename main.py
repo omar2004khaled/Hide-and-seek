@@ -380,7 +380,8 @@ class HideAndSeekGame:
             
             for round_num in range(1, rounds + 1):
                 # Get moves
-                human_move = random.randint(0, self.world_size - 1)
+                #human_move = random.randint(0, self.world_size - 1)
+                human_move = self.get_computer_move()
                 computer_move = self.get_computer_move()
                 
                 # Determine positions based on roles
