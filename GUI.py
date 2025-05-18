@@ -430,7 +430,7 @@ class HideAndSeekGUI:
         # Add annotations
         for i in range(self.game.world_size):
             for j in range(self.game.world_size):
-                ax.text(j, i, f"{self.game.payoff_matrix[i, j]:.1f}", 
+                ax.text(j, i, f"{self.game.payoff_matrix[i, j]:.3f}", 
                         ha='center', va='center', 
                         color='black' if abs(self.game.payoff_matrix[i, j]) < 2 else 'white')
         
@@ -507,7 +507,7 @@ class HideAndSeekGUI:
                     height = bar.get_height()
                     if height > threshold:
                         ax.text(bar.get_x() + bar.get_width()/2, height,
-                            f'{height:.1%}',
+                            f'{height:.2%}',
                             ha='center', va='bottom', fontsize=9)
                         
                 ax.set_xticks(range(1, self.game.world_size + 1))
