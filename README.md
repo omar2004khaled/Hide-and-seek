@@ -1,8 +1,5 @@
 # 🕵️ Hide and Seek – Game Theory Simulation
 A Python implementation of a strategic Hide-and-Seek game that demonstrates game theory concepts, optimal strategy calculation using linear programming, and proximity-based scoring mechanics.
-![Game Screenshot](![Screenshot from 2025-05-19 00-50-39](https://github.com/user-attachments/assets/b075008f-88c4-4d5b-ad39-abf00a7fbd05)
-
-
 
 # 📌 Overview
 This game simulates a strategic interaction between a hider and a seeker in a linear or 2D world. The goal is to explore optimal strategies using payoff matrices and linear programming, with both interactive and simulation modes.
