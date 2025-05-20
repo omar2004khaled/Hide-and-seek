@@ -393,17 +393,10 @@ class HideAndSeekGame:
                 else:
                     hider_pos, seeker_pos = computer_move, human_move
                 
-                # Calculate scores
-                base_score = self.payoff_matrix[hider_pos, seeker_pos]
                 
-                if self.use_proximity:
-                    final_score = self.proximity_matrix[hider_pos, seeker_pos]
-                    distance = self.calculate_distance(hider_pos, seeker_pos)
-                    multiplier = self.get_proximity_multiplier(hider_pos, seeker_pos)
-                else:
-                    final_score = base_score
-                    distance = None
-                    multiplier = None
+                final_score = self.payoff_matrix[hider_pos, seeker_pos]
+                distance = self.calculate_distance(hider_pos, seeker_pos) if self.use_proximity and hider_pos != seeker_pos else None
+
                 
                 # Update scores (zero-sum)
                 self.update_scores(final_score)
@@ -424,36 +417,32 @@ class HideAndSeekGame:
                     f.write("  RESULT: Hider found!\n")
                 else:
                     if self.use_proximity:
-                        f.write(f"  Distance: {distance}, Multiplier: {multiplier:.2f}\n")
+                         multiplier = self.get_proximity_multiplier(hider_pos, seeker_pos)
+                         f.write(f"  Distance: {distance}, Multiplier: {multiplier:.2f}\n")
                     f.write("  RESULT: Hider not found\n")
-                
-                f.write(f"  Base score: {base_score:.1f}\n")
-                if self.use_proximity and hider_pos != seeker_pos:
-                    f.write(f"  Final score (with proximity): {final_score:.1f}\n")
-                else:
-                    f.write(f"  Final score: {final_score:.1f}\n")
                 
                 f.write(f"  Human points: {final_score if self.human_role == 'hider' else -final_score:.1f}\n")
                 f.write(f"  Computer points: {-final_score if self.human_role == 'hider' else final_score:.1f}\n")
                 f.write(f"  Winner: {'Human' if human_won else 'Computer'}\n")
-            
-            # Write summary to file
+                f.write(f"  Total points of Human: {self.human_score:.3f}\n")
+                f.write(f"  Total points of Computer: {self.computer_score:.3f}\n")
+                # Write summary to file
             f.write("\n=== Simulation Summary ===\n")
             f.write(f"Total Rounds: {rounds}\n")
-            f.write(f"Human Score: {self.human_score:.1f}\n")
-            f.write(f"Computer Score: {self.computer_score:.1f}\n")
-            f.write(f"Human Wins: {self.human_wins} ({self.human_wins/rounds:.1%})\n")
-            f.write(f"Computer Wins: {self.computer_wins} ({self.computer_wins/rounds:.1%})\n")
-            f.write(f"Net Score (Human - Computer): {self.human_score - self.computer_score:.1f}\n")
+            f.write(f"Human Score: {self.human_score:.3f}\n")
+            f.write(f"Computer Score: {self.computer_score:.3f}\n")
+            f.write(f"Human Wins: {self.human_wins} ({self.human_wins/rounds:.3%})\n")
+            f.write(f"Computer Wins: {self.computer_wins} ({self.computer_wins/rounds:.3%})\n")
+            f.write(f"Net Score (Human - Computer): {self.human_score - self.computer_score:.3f}\n")
         
         # Print summary to console
         print("\n=== Simulation Complete ===")
         print(f"Results saved to {output_file}")
-        print(f"Human Wins: {self.human_wins} ({self.human_wins/rounds:.1%})")
-        print(f"Computer Wins: {self.computer_wins} ({self.computer_wins/rounds:.1%})")
-        print(f"Human Score: {self.human_score:.1f}")
-        print(f"Computer Score: {self.computer_score:.1f}")
-        print(f"Net Score (Human - Computer): {self.human_score - self.computer_score:.1f}")
+        print(f"Human Wins: {self.human_wins} ({self.human_wins/rounds:.3%})")
+        print(f"Computer Wins: {self.computer_wins} ({self.computer_wins/rounds:.3%})")
+        print(f"Human Score: {self.human_score:.3f}")
+        print(f"Computer Score: {self.computer_score:.3f}")
+        print(f"Net Score (Human - Computer): {self.human_score - self.computer_score:.3f}")
         
         results = {
             'human_score': self.human_score,
@@ -479,7 +468,7 @@ class HideAndSeekGame:
             'cols': self.cols,
             'place_types': self.place_types,
             'payoff_matrix': self.payoff_matrix.tolist(),
-            'proximity_matrix': self.proximity_matrix.tolist() if self.use_proximity else None,
+            #'proximity_matrix': self.proximity_matrix.tolist() if self.use_proximity else None,
             'human_role': self.human_role,
             'human_score': self.human_score,
             'computer_score': self.computer_score,
@@ -504,10 +493,10 @@ class HideAndSeekGame:
         self.place_types = state['place_types']
         self.payoff_matrix = np.array(state['payoff_matrix'])
         
-        if self.use_proximity and state.get('proximity_matrix'):
+        """ if self.use_proximity and state.get('proximity_matrix'):
             self.proximity_matrix = np.array(state['proximity_matrix'])
         else:
-            self.proximity_matrix = self.apply_proximity_effects() if self.use_proximity else self.payoff_matrix.copy()
+            self.proximity_matrix = self.apply_proximity_effects() if self.use_proximity else self.payoff_matrix.copy() """
             
         self.human_role = state['human_role']
         self.human_score = state['human_score']
