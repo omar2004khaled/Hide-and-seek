@@ -220,8 +220,8 @@ class HideAndSeekGUI:
                         rows, cols = map(int, grid_size.lower().split('x'))
                         if rows < 2 or cols < 2:
                             raise ValueError("Grid dimensions must be at least 2x2.")
-                        if rows != cols:
-                            raise ValueError("Grid must be square (e.g., 4x4).")
+                        """ if rows != cols:
+                            raise ValueError("Grid must be square (e.g., 4x4).") """
                         
                     except ValueError as e:
                         # This will catch both our custom errors and conversion errors
@@ -618,7 +618,7 @@ class HideAndSeekGUI:
     def reset_game(self):
         """Reset the current game"""
         if self.game:
-            self.game.reset_game()
+            self.game.reset_scores()
             self.create_game_interface()
             messagebox.showinfo("Game Reset", "Game has been reset to initial state")
     

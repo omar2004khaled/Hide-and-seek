@@ -24,15 +24,22 @@ class HideAndSeekGame:
     
     def reset_game(self):
         self.place_types = self.generate_place_types()
-        self.payoff_matrix = self.generate_base_payoff_matrix()
-        #self.proximity_matrix = self.apply_proximity_effects() if self.use_proximity else self.payoff_matrix.copy()
+        self.payoff_matrix = self.generate_base_payoff_matrix() 
         self.human_score = 0
         self.computer_score = 0
         self.rounds_played = 0
         self.human_wins = 0
         self.computer_wins = 0
         self.calculate_optimal_strategies()
-    
+        
+    def reset_scores(self):
+        self.human_score = 0
+        self.computer_score = 0
+        self.rounds_played = 0
+        self.human_wins = 0
+        self.computer_wins = 0
+
+
     def generate_place_types(self):
         """Generate place types ensuring at least one of each type"""
         # First ensure we have at least one of each type
