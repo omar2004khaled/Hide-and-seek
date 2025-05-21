@@ -452,7 +452,7 @@ class HideAndSeekGUI:
         fig = plt.Figure(figsize=(10, 5), dpi=100)
         
         # Calculate significance threshold (hide very small probabilities)
-        threshold = 0.1 / self.game.world_size
+        threshold = 0.01 / self.game.world_size
         
         for i, (probs, title, color) in enumerate(zip(
             [self.game.hider_probabilities, self.game.seeker_probabilities],
@@ -480,7 +480,7 @@ class HideAndSeekGUI:
                     for col in range(cols):
                         pos = row * cols + col
                         if probs[pos] > threshold:
-                            ax.text(col, row, f'{probs[pos]:.1%}', 
+                            ax.text(col, row, f'{probs[pos]:.3%}', 
                                    ha='center', va='center', 
                                    color='black' if probs[pos] < 0.5 else 'white')
                 
@@ -507,7 +507,7 @@ class HideAndSeekGUI:
                     height = bar.get_height()
                     if height > threshold:
                         ax.text(bar.get_x() + bar.get_width()/2, height,
-                            f'{height:.2%}',
+                            f'{height:.3%}',
                             ha='center', va='bottom', fontsize=9)
                         
                 ax.set_xticks(range(1, self.game.world_size + 1))

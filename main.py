@@ -370,6 +370,9 @@ class HideAndSeekGame:
         self.human_score = self.computer_score = 0
         self.human_wins = self.computer_wins = 0
         self.rounds_played = 0
+
+        hider_position_counts = {pos: 0 for pos in range(self.world_size)}
+        seeker_position_counts = {pos: 0 for pos in range(self.world_size)}
         
         # Prepare to write to output file
         with open(output_file, 'w') as f:
@@ -383,9 +386,10 @@ class HideAndSeekGame:
             
             for round_num in range(1, rounds + 1):
                 # Get moves
-                #human_move = random.randint(0, self.world_size - 1)
-                human_move = self.get_computer_move()
+                probs = self.seeker_probabilities if self.human_role == "seeker" else self.hider_probabilities
+                human_move = np.random.choice(self.world_size, p=probs)
                 computer_move = self.get_computer_move()
+            
                 
                 # Determine positions based on roles
                 if self.human_role == "hider":
@@ -393,7 +397,9 @@ class HideAndSeekGame:
                 else:
                     hider_pos, seeker_pos = computer_move, human_move
                 
-                
+                hider_position_counts[hider_pos] += 1
+                seeker_position_counts[seeker_pos] += 1 
+
                 final_score = self.payoff_matrix[hider_pos, seeker_pos]
                 distance = self.calculate_distance(hider_pos, seeker_pos) if self.use_proximity and hider_pos != seeker_pos else None
 
@@ -434,7 +440,22 @@ class HideAndSeekGame:
             f.write(f"Human Wins: {self.human_wins} ({self.human_wins/rounds:.3%})\n")
             f.write(f"Computer Wins: {self.computer_wins} ({self.computer_wins/rounds:.3%})\n")
             f.write(f"Net Score (Human - Computer): {self.human_score - self.computer_score:.3f}\n")
-        
+
+
+        print("\n=== Hider Position Counts ===")
+        for pos, count in hider_position_counts.items():
+            coords = self.position_to_coords(pos)
+            place_type = ['Hard', 'Neutral', 'Easy'][self.place_types[pos]]
+            print(f"Position {pos} ({coords} - {place_type}): {count} times")
+
+    # Print SEEKER position stats
+        print("\n=== Seeker Position Counts ===")
+        for pos, count in seeker_position_counts.items():
+            coords = self.position_to_coords(pos)
+            place_type = ['Hard', 'Neutral', 'Easy'][self.place_types[pos]]
+            print(f"Position {pos} ({coords} - {place_type}): {count} times")
+
+
         # Print summary to console
         print("\n=== Simulation Complete ===")
         print(f"Results saved to {output_file}")
