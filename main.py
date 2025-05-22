@@ -309,14 +309,14 @@ class HideAndSeekGame:
         
         if self.human_role == "hider":
             if hider_pos == seeker_pos:
-                return f"Computer found you at {hider_coords} [{place_type}]. You lose {abs(score):.1f} points, computer gains {abs(score):.1f} points."
+                return f"Computer found you at {hider_coords} [{place_type}]. You lose {abs(score):.2f} points, computer gains {abs(score):.2f} points."
             else:
-                return f"You win +{score:.1f} points, computer loses {abs(score):.1f} points{proximity_detail} (Hide at {hider_coords} [{place_type}], computer searched at {seeker_coords})"
+                return f"You win +{score:.2f} points, computer loses {abs(score):.2f} points{proximity_detail} (Hide at {hider_coords} [{place_type}], computer searched at {seeker_coords})"
         else:
             if hider_pos == seeker_pos:
-                return f"You found hider at {hider_coords} [{place_type}]. You gain +{abs(score):.1f} points, computer loses {abs(score):.1f} points."
+                return f"You found hider at {hider_coords} [{place_type}]. You gain +{abs(score):.2f} points, computer loses {abs(score):.2f} points."
             else:
-                return f"Computer wins {abs(score):.1f} points, you lose {abs(score):.1f} points{proximity_detail} (Computer hide at {hider_coords} [{place_type}], you searched at {seeker_coords})"
+                return f"Computer wins {abs(score):.2f} points, you lose {abs(score):.2f} points{proximity_detail} (Computer hide at {hider_coords} [{place_type}], you searched at {seeker_coords})"
         
     def get_computer_move(self):
         """Get computer's move based on optimal strategy"""

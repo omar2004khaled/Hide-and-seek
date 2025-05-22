@@ -1,1088 +1,1092 @@
 Hide and Seek Simulation - 100 rounds (Zero-Sum)
-World Size: 7
+World Size: 6
 Proximity Effects: ON
 Grid: 1D
-Human Role: hider
+Human Role: seeker
 
 === Round-by-Round Results ===
 
 Round 1:
-  Hider position: 5 (Easy)
-  Seeker position: 1
-  Distance: 4, Multiplier: 1.00
+  Hider position: 1 (Easy)
+  Seeker position: 6
+  Distance: 5, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -2.0
+  Computer points: 2.0
+  Winner: Computer
+  Total points of Human: -2.000
+  Total points of Computer: 2.000
 
 Round 2:
-  Hider position: 5 (Easy)
+  Hider position: 3 (Neutral)
   Seeker position: 1
-  Distance: 4, Multiplier: 1.00
+  Distance: 2, Multiplier: 0.75
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -0.8
+  Computer points: 0.8
+  Winner: Computer
+  Total points of Human: -2.750
+  Total points of Computer: 2.750
 
 Round 3:
-  Hider position: 2 (Easy)
-  Seeker position: 1
-  Distance: 1, Multiplier: 0.50
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
+  Hider position: 5 (Neutral)
+  Seeker position: 5
+  RESULT: Hider found!
   Human points: 1.0
   Computer points: -1.0
   Winner: Human
+  Total points of Human: -1.750
+  Total points of Computer: 1.750
 
 Round 4:
-  Hider position: 1 (Easy)
-  Seeker position: 5
-  Distance: 4, Multiplier: 1.00
+  Hider position: 6 (Neutral)
+  Seeker position: 3
+  Distance: 3, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -2.750
+  Total points of Computer: 2.750
 
 Round 5:
-  Hider position: 5 (Easy)
+  Hider position: 4 (Hard)
   Seeker position: 1
-  Distance: 4, Multiplier: 1.00
+  Distance: 3, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -3.750
+  Total points of Computer: 3.750
 
 Round 6:
-  Hider position: 5 (Easy)
-  Seeker position: 5
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
+  Hider position: 6 (Neutral)
+  Seeker position: 1
+  Distance: 5, Multiplier: 1.00
+  RESULT: Hider not found
   Human points: -1.0
   Computer points: 1.0
   Winner: Computer
+  Total points of Human: -4.750
+  Total points of Computer: 4.750
 
 Round 7:
-  Hider position: 1 (Easy)
-  Seeker position: 1
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
+  Hider position: 6 (Neutral)
+  Seeker position: 2
+  Distance: 4, Multiplier: 1.00
+  RESULT: Hider not found
   Human points: -1.0
   Computer points: 1.0
   Winner: Computer
+  Total points of Human: -5.750
+  Total points of Computer: 5.750
 
 Round 8:
-  Hider position: 1 (Easy)
-  Seeker position: 1
+  Hider position: 6 (Neutral)
+  Seeker position: 6
   RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
-  Winner: Computer
+  Human points: 1.0
+  Computer points: -1.0
+  Winner: Human
+  Total points of Human: -4.750
+  Total points of Computer: 4.750
 
 Round 9:
-  Hider position: 1 (Easy)
-  Seeker position: 2
+  Hider position: 5 (Neutral)
+  Seeker position: 6
   Distance: 1, Multiplier: 0.50
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -5.250
+  Total points of Computer: 5.250
 
 Round 10:
-  Hider position: 2 (Easy)
-  Seeker position: 5
-  Distance: 3, Multiplier: 1.00
+  Hider position: 5 (Neutral)
+  Seeker position: 1
+  Distance: 4, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -6.250
+  Total points of Computer: 6.250
 
 Round 11:
-  Hider position: 1 (Easy)
-  Seeker position: 2
-  Distance: 1, Multiplier: 0.50
+  Hider position: 5 (Neutral)
+  Seeker position: 1
+  Distance: 4, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -7.250
+  Total points of Computer: 7.250
 
 Round 12:
-  Hider position: 5 (Easy)
+  Hider position: 6 (Neutral)
   Seeker position: 5
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
-  Winner: Computer
-
-Round 13:
-  Hider position: 5 (Easy)
-  Seeker position: 5
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
-  Winner: Computer
-
-Round 14:
-  Hider position: 5 (Easy)
-  Seeker position: 1
-  Distance: 4, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 15:
-  Hider position: 1 (Easy)
-  Seeker position: 1
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
-  Winner: Computer
-
-Round 16:
-  Hider position: 5 (Easy)
-  Seeker position: 2
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 17:
-  Hider position: 5 (Easy)
-  Seeker position: 1
-  Distance: 4, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 18:
-  Hider position: 5 (Easy)
-  Seeker position: 1
-  Distance: 4, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 19:
-  Hider position: 2 (Easy)
-  Seeker position: 5
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 20:
-  Hider position: 1 (Easy)
-  Seeker position: 2
   Distance: 1, Multiplier: 0.50
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -7.750
+  Total points of Computer: 7.750
+
+Round 13:
+  Hider position: 5 (Neutral)
+  Seeker position: 6
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -8.250
+  Total points of Computer: 8.250
+
+Round 14:
+  Hider position: 1 (Easy)
+  Seeker position: 5
+  Distance: 4, Multiplier: 1.00
+  RESULT: Hider not found
+  Human points: -2.0
+  Computer points: 2.0
+  Winner: Computer
+  Total points of Human: -10.250
+  Total points of Computer: 10.250
+
+Round 15:
+  Hider position: 2 (Neutral)
+  Seeker position: 1
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -10.750
+  Total points of Computer: 10.750
+
+Round 16:
+  Hider position: 1 (Easy)
+  Seeker position: 1
+  RESULT: Hider found!
   Human points: 1.0
   Computer points: -1.0
   Winner: Human
+  Total points of Human: -9.750
+  Total points of Computer: 9.750
+
+Round 17:
+  Hider position: 2 (Neutral)
+  Seeker position: 5
+  Distance: 3, Multiplier: 1.00
+  RESULT: Hider not found
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -10.750
+  Total points of Computer: 10.750
+
+Round 18:
+  Hider position: 6 (Neutral)
+  Seeker position: 1
+  Distance: 5, Multiplier: 1.00
+  RESULT: Hider not found
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -11.750
+  Total points of Computer: 11.750
+
+Round 19:
+  Hider position: 3 (Neutral)
+  Seeker position: 6
+  Distance: 3, Multiplier: 1.00
+  RESULT: Hider not found
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -12.750
+  Total points of Computer: 12.750
+
+Round 20:
+  Hider position: 2 (Neutral)
+  Seeker position: 1
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -13.250
+  Total points of Computer: 13.250
 
 Round 21:
   Hider position: 1 (Easy)
-  Seeker position: 5
-  Distance: 4, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
+  Seeker position: 1
+  RESULT: Hider found!
+  Human points: 1.0
+  Computer points: -1.0
   Winner: Human
+  Total points of Human: -12.250
+  Total points of Computer: 12.250
 
 Round 22:
-  Hider position: 2 (Easy)
-  Seeker position: 5
-  Distance: 3, Multiplier: 1.00
+  Hider position: 5 (Neutral)
+  Seeker position: 1
+  Distance: 4, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -13.250
+  Total points of Computer: 13.250
 
 Round 23:
-  Hider position: 5 (Easy)
-  Seeker position: 1
+  Hider position: 6 (Neutral)
+  Seeker position: 2
   Distance: 4, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -14.250
+  Total points of Computer: 14.250
 
 Round 24:
-  Hider position: 2 (Easy)
-  Seeker position: 1
-  Distance: 1, Multiplier: 0.50
+  Hider position: 2 (Neutral)
+  Seeker position: 6
+  Distance: 4, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -15.250
+  Total points of Computer: 15.250
 
 Round 25:
-  Hider position: 2 (Easy)
-  Seeker position: 5
-  Distance: 3, Multiplier: 1.00
+  Hider position: 6 (Neutral)
+  Seeker position: 1
+  Distance: 5, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -16.250
+  Total points of Computer: 16.250
 
 Round 26:
-  Hider position: 1 (Easy)
+  Hider position: 3 (Neutral)
   Seeker position: 1
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
+  Distance: 2, Multiplier: 0.75
+  RESULT: Hider not found
+  Human points: -0.8
+  Computer points: 0.8
   Winner: Computer
+  Total points of Human: -17.000
+  Total points of Computer: 17.000
 
 Round 27:
-  Hider position: 2 (Easy)
-  Seeker position: 5
+  Hider position: 4 (Hard)
+  Seeker position: 1
   Distance: 3, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -18.000
+  Total points of Computer: 18.000
 
 Round 28:
-  Hider position: 2 (Easy)
-  Seeker position: 2
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
+  Hider position: 5 (Neutral)
+  Seeker position: 6
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -0.5
+  Computer points: 0.5
   Winner: Computer
+  Total points of Human: -18.500
+  Total points of Computer: 18.500
 
 Round 29:
-  Hider position: 2 (Easy)
+  Hider position: 5 (Neutral)
   Seeker position: 1
-  Distance: 1, Multiplier: 0.50
+  Distance: 4, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -19.500
+  Total points of Computer: 19.500
 
 Round 30:
-  Hider position: 2 (Easy)
+  Hider position: 3 (Neutral)
   Seeker position: 1
-  Distance: 1, Multiplier: 0.50
+  Distance: 2, Multiplier: 0.75
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
+  Human points: -0.8
+  Computer points: 0.8
+  Winner: Computer
+  Total points of Human: -20.250
+  Total points of Computer: 20.250
 
 Round 31:
-  Hider position: 2 (Easy)
+  Hider position: 2 (Neutral)
   Seeker position: 2
   RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
-  Winner: Computer
+  Human points: 1.0
+  Computer points: -1.0
+  Winner: Human
+  Total points of Human: -19.250
+  Total points of Computer: 19.250
 
 Round 32:
-  Hider position: 2 (Easy)
-  Seeker position: 5
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
+  Hider position: 6 (Neutral)
+  Seeker position: 6
+  RESULT: Hider found!
+  Human points: 1.0
+  Computer points: -1.0
   Winner: Human
+  Total points of Human: -18.250
+  Total points of Computer: 18.250
 
 Round 33:
-  Hider position: 1 (Easy)
+  Hider position: 2 (Neutral)
   Seeker position: 5
-  Distance: 4, Multiplier: 1.00
+  Distance: 3, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -19.250
+  Total points of Computer: 19.250
 
 Round 34:
-  Hider position: 5 (Easy)
+  Hider position: 2 (Neutral)
   Seeker position: 1
-  Distance: 4, Multiplier: 1.00
+  Distance: 1, Multiplier: 0.50
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -19.750
+  Total points of Computer: 19.750
 
 Round 35:
-  Hider position: 2 (Easy)
-  Seeker position: 2
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
+  Hider position: 2 (Neutral)
+  Seeker position: 3
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -0.5
+  Computer points: 0.5
   Winner: Computer
+  Total points of Human: -20.250
+  Total points of Computer: 20.250
 
 Round 36:
-  Hider position: 1 (Easy)
-  Seeker position: 1
+  Hider position: 6 (Neutral)
+  Seeker position: 6
   RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
-  Winner: Computer
+  Human points: 1.0
+  Computer points: -1.0
+  Winner: Human
+  Total points of Human: -19.250
+  Total points of Computer: 19.250
 
 Round 37:
-  Hider position: 2 (Easy)
-  Seeker position: 1
-  Distance: 1, Multiplier: 0.50
+  Hider position: 1 (Easy)
+  Seeker position: 3
+  Distance: 2, Multiplier: 0.75
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
+  Human points: -1.5
+  Computer points: 1.5
+  Winner: Computer
+  Total points of Human: -20.750
+  Total points of Computer: 20.750
 
 Round 38:
-  Hider position: 1 (Easy)
-  Seeker position: 1
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
+  Hider position: 3 (Neutral)
+  Seeker position: 6
+  Distance: 3, Multiplier: 1.00
+  RESULT: Hider not found
   Human points: -1.0
   Computer points: 1.0
   Winner: Computer
+  Total points of Human: -21.750
+  Total points of Computer: 21.750
 
 Round 39:
-  Hider position: 2 (Easy)
-  Seeker position: 1
-  Distance: 1, Multiplier: 0.50
+  Hider position: 6 (Neutral)
+  Seeker position: 3
+  Distance: 3, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -22.750
+  Total points of Computer: 22.750
 
 Round 40:
-  Hider position: 1 (Easy)
-  Seeker position: 5
-  Distance: 4, Multiplier: 1.00
+  Hider position: 6 (Neutral)
+  Seeker position: 1
+  Distance: 5, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -23.750
+  Total points of Computer: 23.750
 
 Round 41:
-  Hider position: 5 (Easy)
-  Seeker position: 1
-  Distance: 4, Multiplier: 1.00
+  Hider position: 1 (Easy)
+  Seeker position: 4
+  Distance: 3, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -2.0
+  Computer points: 2.0
+  Winner: Computer
+  Total points of Human: -25.750
+  Total points of Computer: 25.750
 
 Round 42:
-  Hider position: 1 (Easy)
-  Seeker position: 5
-  Distance: 4, Multiplier: 1.00
+  Hider position: 2 (Neutral)
+  Seeker position: 1
+  Distance: 1, Multiplier: 0.50
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -26.250
+  Total points of Computer: 26.250
 
 Round 43:
-  Hider position: 1 (Easy)
-  Seeker position: 5
-  Distance: 4, Multiplier: 1.00
+  Hider position: 2 (Neutral)
+  Seeker position: 4
+  Distance: 2, Multiplier: 0.75
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -0.8
+  Computer points: 0.8
+  Winner: Computer
+  Total points of Human: -27.000
+  Total points of Computer: 27.000
 
 Round 44:
-  Hider position: 2 (Easy)
-  Seeker position: 1
-  Distance: 1, Multiplier: 0.50
+  Hider position: 3 (Neutral)
+  Seeker position: 6
+  Distance: 3, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -28.000
+  Total points of Computer: 28.000
 
 Round 45:
-  Hider position: 5 (Easy)
+  Hider position: 3 (Neutral)
   Seeker position: 5
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
+  Distance: 2, Multiplier: 0.75
+  RESULT: Hider not found
+  Human points: -0.8
+  Computer points: 0.8
   Winner: Computer
+  Total points of Human: -28.750
+  Total points of Computer: 28.750
 
 Round 46:
-  Hider position: 5 (Easy)
-  Seeker position: 5
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
+  Hider position: 4 (Hard)
+  Seeker position: 2
+  Distance: 2, Multiplier: 0.75
+  RESULT: Hider not found
+  Human points: -0.8
+  Computer points: 0.8
   Winner: Computer
+  Total points of Human: -29.500
+  Total points of Computer: 29.500
 
 Round 47:
-  Hider position: 2 (Easy)
-  Seeker position: 5
+  Hider position: 4 (Hard)
+  Seeker position: 1
   Distance: 3, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -30.500
+  Total points of Computer: 30.500
 
 Round 48:
-  Hider position: 1 (Easy)
-  Seeker position: 2
+  Hider position: 5 (Neutral)
+  Seeker position: 6
   Distance: 1, Multiplier: 0.50
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -31.000
+  Total points of Computer: 31.000
 
 Round 49:
-  Hider position: 1 (Easy)
-  Seeker position: 1
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
+  Hider position: 5 (Neutral)
+  Seeker position: 3
+  Distance: 2, Multiplier: 0.75
+  RESULT: Hider not found
+  Human points: -0.8
+  Computer points: 0.8
   Winner: Computer
+  Total points of Human: -31.750
+  Total points of Computer: 31.750
 
 Round 50:
-  Hider position: 5 (Easy)
+  Hider position: 3 (Neutral)
   Seeker position: 1
-  Distance: 4, Multiplier: 1.00
+  Distance: 2, Multiplier: 0.75
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -0.8
+  Computer points: 0.8
+  Winner: Computer
+  Total points of Human: -32.500
+  Total points of Computer: 32.500
 
 Round 51:
-  Hider position: 5 (Easy)
-  Seeker position: 5
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
+  Hider position: 2 (Neutral)
+  Seeker position: 1
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -0.5
+  Computer points: 0.5
   Winner: Computer
+  Total points of Human: -33.000
+  Total points of Computer: 33.000
 
 Round 52:
-  Hider position: 5 (Easy)
+  Hider position: 1 (Easy)
   Seeker position: 1
-  Distance: 4, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
+  RESULT: Hider found!
+  Human points: 1.0
+  Computer points: -1.0
   Winner: Human
+  Total points of Human: -32.000
+  Total points of Computer: 32.000
 
 Round 53:
-  Hider position: 1 (Easy)
-  Seeker position: 2
-  Distance: 1, Multiplier: 0.50
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
+  Hider position: 6 (Neutral)
+  Seeker position: 6
+  RESULT: Hider found!
   Human points: 1.0
   Computer points: -1.0
   Winner: Human
+  Total points of Human: -31.000
+  Total points of Computer: 31.000
 
 Round 54:
-  Hider position: 1 (Easy)
-  Seeker position: 5
-  Distance: 4, Multiplier: 1.00
+  Hider position: 2 (Neutral)
+  Seeker position: 1
+  Distance: 1, Multiplier: 0.50
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -31.500
+  Total points of Computer: 31.500
 
 Round 55:
-  Hider position: 5 (Easy)
-  Seeker position: 1
-  Distance: 4, Multiplier: 1.00
+  Hider position: 4 (Hard)
+  Seeker position: 3
+  Distance: 1, Multiplier: 0.50
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -32.000
+  Total points of Computer: 32.000
 
 Round 56:
-  Hider position: 5 (Easy)
-  Seeker position: 2
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
+  Hider position: 5 (Neutral)
+  Seeker position: 5
+  RESULT: Hider found!
+  Human points: 1.0
+  Computer points: -1.0
   Winner: Human
+  Total points of Human: -31.000
+  Total points of Computer: 31.000
 
 Round 57:
-  Hider position: 2 (Easy)
-  Seeker position: 5
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
+  Hider position: 1 (Easy)
+  Seeker position: 1
+  RESULT: Hider found!
+  Human points: 1.0
+  Computer points: -1.0
   Winner: Human
+  Total points of Human: -30.000
+  Total points of Computer: 30.000
 
 Round 58:
-  Hider position: 2 (Easy)
-  Seeker position: 2
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
+  Hider position: 3 (Neutral)
+  Seeker position: 1
+  Distance: 2, Multiplier: 0.75
+  RESULT: Hider not found
+  Human points: -0.8
+  Computer points: 0.8
   Winner: Computer
+  Total points of Human: -30.750
+  Total points of Computer: 30.750
 
 Round 59:
-  Hider position: 1 (Easy)
-  Seeker position: 2
+  Hider position: 2 (Neutral)
+  Seeker position: 1
   Distance: 1, Multiplier: 0.50
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -31.250
+  Total points of Computer: 31.250
 
 Round 60:
-  Hider position: 2 (Easy)
-  Seeker position: 2
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
+  Hider position: 4 (Hard)
+  Seeker position: 1
+  Distance: 3, Multiplier: 1.00
+  RESULT: Hider not found
   Human points: -1.0
   Computer points: 1.0
   Winner: Computer
+  Total points of Human: -32.250
+  Total points of Computer: 32.250
 
 Round 61:
-  Hider position: 2 (Easy)
-  Seeker position: 1
+  Hider position: 5 (Neutral)
+  Seeker position: 6
   Distance: 1, Multiplier: 0.50
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -32.750
+  Total points of Computer: 32.750
 
 Round 62:
-  Hider position: 5 (Easy)
-  Seeker position: 1
+  Hider position: 2 (Neutral)
+  Seeker position: 6
   Distance: 4, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -33.750
+  Total points of Computer: 33.750
 
 Round 63:
-  Hider position: 2 (Easy)
-  Seeker position: 5
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 64:
-  Hider position: 1 (Easy)
-  Seeker position: 1
+  Hider position: 3 (Neutral)
+  Seeker position: 3
   RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
-  Winner: Computer
-
-Round 65:
-  Hider position: 5 (Easy)
-  Seeker position: 2
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 66:
-  Hider position: 2 (Easy)
-  Seeker position: 5
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 67:
-  Hider position: 1 (Easy)
-  Seeker position: 1
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
-  Winner: Computer
-
-Round 68:
-  Hider position: 5 (Easy)
-  Seeker position: 1
-  Distance: 4, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 69:
-  Hider position: 5 (Easy)
-  Seeker position: 1
-  Distance: 4, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 70:
-  Hider position: 5 (Easy)
-  Seeker position: 2
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 71:
-  Hider position: 2 (Easy)
-  Seeker position: 1
-  Distance: 1, Multiplier: 0.50
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
   Human points: 1.0
   Computer points: -1.0
   Winner: Human
+  Total points of Human: -32.750
+  Total points of Computer: 32.750
 
-Round 72:
+Round 64:
+  Hider position: 2 (Neutral)
+  Seeker position: 3
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -33.250
+  Total points of Computer: 33.250
+
+Round 65:
   Hider position: 1 (Easy)
   Seeker position: 1
   RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
+  Human points: 1.0
+  Computer points: -1.0
+  Winner: Human
+  Total points of Human: -32.250
+  Total points of Computer: 32.250
+
+Round 66:
+  Hider position: 6 (Neutral)
+  Seeker position: 6
+  RESULT: Hider found!
+  Human points: 1.0
+  Computer points: -1.0
+  Winner: Human
+  Total points of Human: -31.250
+  Total points of Computer: 31.250
+
+Round 67:
+  Hider position: 5 (Neutral)
+  Seeker position: 1
+  Distance: 4, Multiplier: 1.00
+  RESULT: Hider not found
   Human points: -1.0
   Computer points: 1.0
   Winner: Computer
+  Total points of Human: -32.250
+  Total points of Computer: 32.250
 
-Round 73:
-  Hider position: 2 (Easy)
-  Seeker position: 5
+Round 68:
+  Hider position: 4 (Hard)
+  Seeker position: 1
   Distance: 3, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -33.250
+  Total points of Computer: 33.250
+
+Round 69:
+  Hider position: 5 (Neutral)
+  Seeker position: 5
+  RESULT: Hider found!
+  Human points: 1.0
+  Computer points: -1.0
   Winner: Human
+  Total points of Human: -32.250
+  Total points of Computer: 32.250
+
+Round 70:
+  Hider position: 6 (Neutral)
+  Seeker position: 1
+  Distance: 5, Multiplier: 1.00
+  RESULT: Hider not found
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -33.250
+  Total points of Computer: 33.250
+
+Round 71:
+  Hider position: 6 (Neutral)
+  Seeker position: 1
+  Distance: 5, Multiplier: 1.00
+  RESULT: Hider not found
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -34.250
+  Total points of Computer: 34.250
+
+Round 72:
+  Hider position: 5 (Neutral)
+  Seeker position: 6
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -34.750
+  Total points of Computer: 34.750
+
+Round 73:
+  Hider position: 3 (Neutral)
+  Seeker position: 5
+  Distance: 2, Multiplier: 0.75
+  RESULT: Hider not found
+  Human points: -0.8
+  Computer points: 0.8
+  Winner: Computer
+  Total points of Human: -35.500
+  Total points of Computer: 35.500
 
 Round 74:
   Hider position: 1 (Easy)
-  Seeker position: 2
-  Distance: 1, Multiplier: 0.50
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
+  Seeker position: 1
+  RESULT: Hider found!
   Human points: 1.0
   Computer points: -1.0
   Winner: Human
+  Total points of Human: -34.500
+  Total points of Computer: 34.500
 
 Round 75:
   Hider position: 1 (Easy)
-  Seeker position: 2
-  Distance: 1, Multiplier: 0.50
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
+  Seeker position: 1
+  RESULT: Hider found!
   Human points: 1.0
   Computer points: -1.0
   Winner: Human
+  Total points of Human: -33.500
+  Total points of Computer: 33.500
 
 Round 76:
-  Hider position: 5 (Easy)
-  Seeker position: 2
-  Distance: 3, Multiplier: 1.00
+  Hider position: 5 (Neutral)
+  Seeker position: 1
+  Distance: 4, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -34.500
+  Total points of Computer: 34.500
 
 Round 77:
-  Hider position: 5 (Easy)
-  Seeker position: 1
-  Distance: 4, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
+  Hider position: 6 (Neutral)
+  Seeker position: 6
+  RESULT: Hider found!
+  Human points: 1.0
+  Computer points: -1.0
   Winner: Human
+  Total points of Human: -33.500
+  Total points of Computer: 33.500
 
 Round 78:
-  Hider position: 2 (Easy)
-  Seeker position: 2
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
+  Hider position: 5 (Neutral)
+  Seeker position: 1
+  Distance: 4, Multiplier: 1.00
+  RESULT: Hider not found
   Human points: -1.0
   Computer points: 1.0
   Winner: Computer
+  Total points of Human: -34.500
+  Total points of Computer: 34.500
 
 Round 79:
-  Hider position: 2 (Easy)
-  Seeker position: 1
-  Distance: 1, Multiplier: 0.50
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
+  Hider position: 2 (Neutral)
+  Seeker position: 2
+  RESULT: Hider found!
   Human points: 1.0
   Computer points: -1.0
   Winner: Human
+  Total points of Human: -33.500
+  Total points of Computer: 33.500
 
 Round 80:
-  Hider position: 2 (Easy)
-  Seeker position: 2
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
+  Hider position: 6 (Neutral)
+  Seeker position: 1
+  Distance: 5, Multiplier: 1.00
+  RESULT: Hider not found
   Human points: -1.0
   Computer points: 1.0
   Winner: Computer
+  Total points of Human: -34.500
+  Total points of Computer: 34.500
 
 Round 81:
-  Hider position: 5 (Easy)
-  Seeker position: 1
-  Distance: 4, Multiplier: 1.00
+  Hider position: 5 (Neutral)
+  Seeker position: 3
+  Distance: 2, Multiplier: 0.75
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -0.8
+  Computer points: 0.8
+  Winner: Computer
+  Total points of Human: -35.250
+  Total points of Computer: 35.250
 
 Round 82:
-  Hider position: 5 (Easy)
-  Seeker position: 2
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
+  Hider position: 1 (Easy)
+  Seeker position: 1
+  RESULT: Hider found!
+  Human points: 1.0
+  Computer points: -1.0
   Winner: Human
+  Total points of Human: -34.250
+  Total points of Computer: 34.250
 
 Round 83:
-  Hider position: 1 (Easy)
-  Seeker position: 2
-  Distance: 1, Multiplier: 0.50
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
+  Hider position: 3 (Neutral)
+  Seeker position: 3
+  RESULT: Hider found!
   Human points: 1.0
   Computer points: -1.0
   Winner: Human
+  Total points of Human: -33.250
+  Total points of Computer: 33.250
 
 Round 84:
-  Hider position: 1 (Easy)
-  Seeker position: 5
+  Hider position: 2 (Neutral)
+  Seeker position: 6
   Distance: 4, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 85:
-  Hider position: 1 (Easy)
-  Seeker position: 1
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
   Human points: -1.0
   Computer points: 1.0
   Winner: Computer
+  Total points of Human: -34.250
+  Total points of Computer: 34.250
 
-Round 86:
-  Hider position: 1 (Easy)
-  Seeker position: 2
+Round 85:
+  Hider position: 5 (Neutral)
+  Seeker position: 6
   Distance: 1, Multiplier: 0.50
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -34.750
+  Total points of Computer: 34.750
+
+Round 86:
+  Hider position: 5 (Neutral)
+  Seeker position: 4
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -35.250
+  Total points of Computer: 35.250
+
+Round 87:
+  Hider position: 3 (Neutral)
+  Seeker position: 1
+  Distance: 2, Multiplier: 0.75
+  RESULT: Hider not found
+  Human points: -0.8
+  Computer points: 0.8
+  Winner: Computer
+  Total points of Human: -36.000
+  Total points of Computer: 36.000
+
+Round 88:
+  Hider position: 1 (Easy)
+  Seeker position: 6
+  Distance: 5, Multiplier: 1.00
+  RESULT: Hider not found
+  Human points: -2.0
+  Computer points: 2.0
+  Winner: Computer
+  Total points of Human: -38.000
+  Total points of Computer: 38.000
+
+Round 89:
+  Hider position: 5 (Neutral)
+  Seeker position: 1
+  Distance: 4, Multiplier: 1.00
+  RESULT: Hider not found
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -39.000
+  Total points of Computer: 39.000
+
+Round 90:
+  Hider position: 3 (Neutral)
+  Seeker position: 3
+  RESULT: Hider found!
   Human points: 1.0
   Computer points: -1.0
   Winner: Human
-
-Round 87:
-  Hider position: 2 (Easy)
-  Seeker position: 2
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
-  Winner: Computer
-
-Round 88:
-  Hider position: 5 (Easy)
-  Seeker position: 2
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 89:
-  Hider position: 5 (Easy)
-  Seeker position: 1
-  Distance: 4, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 90:
-  Hider position: 5 (Easy)
-  Seeker position: 2
-  Distance: 3, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Total points of Human: -38.000
+  Total points of Computer: 38.000
 
 Round 91:
   Hider position: 1 (Easy)
   Seeker position: 1
   RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
-  Human points: -1.0
-  Computer points: 1.0
-  Winner: Computer
+  Human points: 1.0
+  Computer points: -1.0
+  Winner: Human
+  Total points of Human: -37.000
+  Total points of Computer: 37.000
 
 Round 92:
-  Hider position: 1 (Easy)
-  Seeker position: 5
-  Distance: 4, Multiplier: 1.00
+  Hider position: 6 (Neutral)
+  Seeker position: 1
+  Distance: 5, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 93:
-  Hider position: 1 (Easy)
-  Seeker position: 2
-  Distance: 1, Multiplier: 0.50
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
-
-Round 94:
-  Hider position: 1 (Easy)
-  Seeker position: 2
-  Distance: 1, Multiplier: 0.50
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 1.0
-  Human points: 1.0
-  Computer points: -1.0
-  Winner: Human
-
-Round 95:
-  Hider position: 1 (Easy)
-  Seeker position: 5
-  Distance: 4, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 96:
-  Hider position: 2 (Easy)
-  Seeker position: 2
-  RESULT: Hider found!
-  Base score: -1.0
-  Final score: -1.0
   Human points: -1.0
   Computer points: 1.0
   Winner: Computer
+  Total points of Human: -38.000
+  Total points of Computer: 38.000
+
+Round 93:
+  Hider position: 5 (Neutral)
+  Seeker position: 3
+  Distance: 2, Multiplier: 0.75
+  RESULT: Hider not found
+  Human points: -0.8
+  Computer points: 0.8
+  Winner: Computer
+  Total points of Human: -38.750
+  Total points of Computer: 38.750
+
+Round 94:
+  Hider position: 2 (Neutral)
+  Seeker position: 1
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -39.250
+  Total points of Computer: 39.250
+
+Round 95:
+  Hider position: 4 (Hard)
+  Seeker position: 2
+  Distance: 2, Multiplier: 0.75
+  RESULT: Hider not found
+  Human points: -0.8
+  Computer points: 0.8
+  Winner: Computer
+  Total points of Human: -40.000
+  Total points of Computer: 40.000
+
+Round 96:
+  Hider position: 1 (Easy)
+  Seeker position: 2
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -41.000
+  Total points of Computer: 41.000
 
 Round 97:
-  Hider position: 2 (Easy)
-  Seeker position: 5
-  Distance: 3, Multiplier: 1.00
+  Hider position: 3 (Neutral)
+  Seeker position: 1
+  Distance: 2, Multiplier: 0.75
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -0.8
+  Computer points: 0.8
+  Winner: Computer
+  Total points of Human: -41.750
+  Total points of Computer: 41.750
 
 Round 98:
-  Hider position: 1 (Easy)
-  Seeker position: 5
-  Distance: 4, Multiplier: 1.00
-  RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
-
-Round 99:
-  Hider position: 5 (Easy)
-  Seeker position: 2
+  Hider position: 4 (Hard)
+  Seeker position: 1
   Distance: 3, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -42.750
+  Total points of Computer: 42.750
 
-Round 100:
-  Hider position: 1 (Easy)
-  Seeker position: 5
+Round 99:
+  Hider position: 5 (Neutral)
+  Seeker position: 1
   Distance: 4, Multiplier: 1.00
   RESULT: Hider not found
-  Base score: 2.0
-  Final score (with proximity): 2.0
-  Human points: 2.0
-  Computer points: -2.0
-  Winner: Human
+  Human points: -1.0
+  Computer points: 1.0
+  Winner: Computer
+  Total points of Human: -43.750
+  Total points of Computer: 43.750
+
+Round 100:
+  Hider position: 6 (Neutral)
+  Seeker position: 5
+  Distance: 1, Multiplier: 0.50
+  RESULT: Hider not found
+  Human points: -0.5
+  Computer points: 0.5
+  Winner: Computer
+  Total points of Human: -44.250
+  Total points of Computer: 44.250
 
 === Simulation Summary ===
 Total Rounds: 100
-Human Score: 97.0
-Computer Score: -97.0
-Human Wins: 73 (73.0%)
-Computer Wins: 27 (27.0%)
-Net Score (Human - Computer): 194.0
+Human Score: -44.250
+Computer Score: 44.250
+Human Wins: 23 (23.000%)
+Computer Wins: 77 (77.000%)
+Net Score (Human - Computer): -88.500
